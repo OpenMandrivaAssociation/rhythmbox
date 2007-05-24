@@ -1,4 +1,4 @@
-%define version 0.10.0
+%define version 0.10.0.90
 
 %define release %mkrel 1
 
@@ -22,6 +22,7 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 Source1:	%name-32.png
 Source2:	%name-16.png
+Patch: rhythmbox-0.10.0.90-missing.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -101,6 +102,7 @@ This is the shared library part of %name.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 
