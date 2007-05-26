@@ -23,7 +23,7 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 Source1:	%name-32.png
 Source2:	%name-16.png
 Patch: rhythmbox-0.10.0.90-missing.patch
-URL:		http://www.rhythmbox.org
+URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
