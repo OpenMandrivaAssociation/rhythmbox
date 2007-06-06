@@ -1,14 +1,9 @@
-%define version 0.10.1
+%define version 0.11.0
 
 %define release %mkrel 1
 
-%if %mdkversion >= 200610
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
-%else
-%define		gstreamer 0.8.11
-%define		gstname gstreamer
-%endif
 
 %define major 0
 %define libname %mklibname rhythmbox %major
@@ -22,8 +17,8 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 Source1:	%name-32.png
 Source2:	%name-16.png
-Patch: rhythmbox-0.10.0.90-missing.patch
-URL:		http://www.gnome.org/projects/rhythmbox/
+Patch: rhythmbox-0.10.90-vala.patch
+URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
@@ -36,37 +31,27 @@ BuildRequires:  libflac-devel
 BuildRequires:  scrollkeeper
 BuildRequires: libsoup-devel
 BuildRequires: libsexy-devel
+BuildRequires: libxrender-devel
 BuildRequires: pygtk2.0-devel
 BuildRequires: liblirc-devel
 BuildRequires: desktop-file-utils
 BuildRequires: libcheck-devel
-%if %{mdkversion} >= 200610
 BuildRequires: avahi-client-devel
 BuildRequires: avahi-glib-devel
 BuildRequires:  libnotify-devel >= 0.3.2
 BuildRequires:  libgstreamer-plugins-base-devel >= %gstreamer
 BuildRequires:  x11-server-xvfb
-%else
-BuildRequires:  gstreamer-plugins-devel >= %gstreamer
-BuildRequires:	XFree86-Xvfb
-%endif
 BuildRequires:  libnautilus-burn-devel > 2.11.3
 BuildRequires:  libtotem-plparser-devel >= 1.1.3
 BuildRequires:  gnome-media libcddb-slave2-devel
+BuildRequires:  libvala-devel
 BuildRequires:  gtk-doc
 #BuildRequires:	automake1.8 gnome-common
 BuildRequires:	intltool
 BuildRequires:	gnome-doc-utils
-%if %mdkversion >= 200610
 Requires: %gstname-plugins-base
 Requires: %gstname-plugins-good
 Requires: %gstname-plugins-ugly
-%else
-Requires:	%gstname-audiosink >= %gstreamer
-Requires:	%gstname-audio-effects >= %gstreamer
-Requires:	%gstname-mad >= %gstreamer
-Requires:	%gstname-vorbis >= %gstreamer
-%endif
 Requires:	%gstname-gnomevfs >= %gstreamer
 Requires:	%gstname-flac >= %gstreamer
 Requires:	dbus-x11
@@ -103,16 +88,13 @@ This is the shared library part of %name.
 %prep
 %setup -q
 %patch -p1
+autoconf
 
 %build
 
 %configure2_5x \
 --enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
-%if %mdkversion >= 200610
 --with-mdns=avahi \
-%else
---with-mdns=howl \
-%endif
 --enable-gtk-doc
 #gw parallel make broken in 0.9.4
 make 
@@ -155,11 +137,7 @@ find %buildroot -name \*.la |xargs chmod 644
 %check
 #gw I couldn't make the tests run in the iurt chroot
 XDISPLAY=$(i=1; while [ -f /tmp/.X$i-lock ]; do i=$(($i+1)); done; echo $i)
-%if %mdkversion <= 200600
-%{_prefix}/X11R6/bin/Xvfb :$XDISPLAY &
-%else
 %{_bindir}/Xvfb :$XDISPLAY &
-%endif
 export DISPLAY=:$XDISPLAY
 # gw one test fails without a running dbus
 #make check
