@@ -1,6 +1,6 @@
-%define version 0.11.0
+%define version 0.11.1
 
-%define release %mkrel 4
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -18,8 +18,6 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 Source1:	%name-32.png
 Source2:	%name-16.png
 Patch: rhythmbox-0.10.90-vala.patch
-# gw adapted from svn, fix crash on ipod disconnect
-Patch1: rhythmbox-0.11.0-ipod.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -45,6 +43,7 @@ BuildRequires:  libgstreamer-plugins-base-devel >= %gstreamer
 BuildRequires:  x11-server-xvfb
 BuildRequires:  libnautilus-burn-devel > 2.11.3
 BuildRequires:  libtotem-plparser-devel >= 1.1.3
+BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  gtk-doc
@@ -90,7 +89,6 @@ This is the shared library part of %name.
 %prep
 %setup -q
 %patch -p1
-%patch1 -p1 -b .ipod
 autoconf
 
 %build
@@ -112,23 +110,12 @@ for omf in %buildroot%_datadir/omf/*/*{-??.omf,-??_??.omf};do
 echo "%lang($(basename $omf|sed -e s/.*-// -e s/.omf//)) $(echo $omf|sed s!%buildroot!!)" >> %name.lang
 done
 
-
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name} 
-?package(%{name}): command="%{_bindir}/rhythmbox" icon="%name.png" longtitle="Music Management Application" title="Rhythmbox" needs="x11" section="Multimedia/Sound" startup_notify="true" xdg="true"
-EOF
-
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Audio;Player" \
   --add-category="X-MandrivaLinux-Multimedia-Audio" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
-
-mkdir -p %buildroot/{%_liconsdir,%_iconsdir,%_miconsdir}
-install -m 644 data/%name.png %buildroot/%_liconsdir
-install -m 644 %SOURCE1  %buildroot/%_iconsdir/%name.png
-install -m 644 %SOURCE2  %buildroot/%_miconsdir/%name.png
 
 rm -f  %buildroot%_libdir/%name/plugins/*.a %buildroot%_libdir/*.a
 #gw remove it until there's a devel package
@@ -181,10 +168,6 @@ rm -rf %{buildroot}
 %_datadir/dbus-1/services/org.gnome.Rhythmbox.service
 %_libexecdir/rhythmbox-metadata
 %_libdir/%name/
-%_menudir/%name
-%_liconsdir/%name.png
-%_iconsdir/%name.png
-%_miconsdir/%name.png
 
 %files -n %libname
 %defattr(-, root, root)
