@@ -18,6 +18,8 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 Source1:	%name-32.png
 Source2:	%name-16.png
 Patch: rhythmbox-0.10.90-vala.patch
+#gw from Fedora, enable Magnatune and Jamendo by default
+Patch1: rhythmbox-enable-stores.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -89,6 +91,9 @@ This is the shared library part of %name.
 %prep
 %setup -q
 %patch -p1
+cd data
+%patch1
+cd ..
 autoconf
 
 %build
