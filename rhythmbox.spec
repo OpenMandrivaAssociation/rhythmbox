@@ -1,6 +1,6 @@
 %define version 0.11.1
 
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -118,7 +118,6 @@ done
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Audio;Player" \
-  --add-category="X-MandrivaLinux-Multimedia-Audio" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 
