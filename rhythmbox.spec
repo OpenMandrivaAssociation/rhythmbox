@@ -1,6 +1,6 @@
-%define version 0.11.1
+%define version 0.11.2
 
-%define release %mkrel 2
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -15,9 +15,6 @@ Release:	%release
 License:	GPL
 Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
-Source1:	%name-32.png
-Source2:	%name-16.png
-Patch: rhythmbox-0.10.90-vala.patch
 #gw from Fedora, enable Magnatune and Jamendo by default
 Patch1: rhythmbox-enable-stores.patch
 URL:		http://www.rhythmbox.org
@@ -90,21 +87,18 @@ This is the shared library part of %name.
 
 %prep
 %setup -q
-%patch -p1
 cd data
 %patch1
-cd ..
-autoconf
+cd -
 
 %build
-
+autoconf
 %configure2_5x \
 --enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
 --with-mdns=avahi \
 --enable-gtk-doc
 #gw parallel make broken in 0.9.4
-make 
-
+%make 
 
 %install
 rm -rf %{buildroot}
@@ -176,5 +170,3 @@ rm -rf %{buildroot}
 %files -n %libname
 %defattr(-, root, root)
 %_libdir/librhythmbox-core.so.%{major}*
-
-
