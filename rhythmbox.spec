@@ -92,12 +92,10 @@ cd data
 cd -
 
 %build
-autoconf
 %configure2_5x \
 --enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
 --with-mdns=avahi \
 --enable-gtk-doc
-#gw parallel make broken in 0.9.4
 %make 
 
 %install
