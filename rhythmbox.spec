@@ -1,6 +1,6 @@
 %define version 0.11.2
 
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -55,7 +55,7 @@ Requires: %gstname-plugins-ugly
 Requires:	%gstname-gnomevfs >= %gstreamer
 Requires:	%gstname-flac >= %gstreamer
 Requires:	dbus-x11
-Requires: pygtk2.0
+Requires: pygtk2.0-libglade
 Requires: gnome-python
 Requires: gnome-python-gconf
 Requires: gnome-python-gnomevfs
