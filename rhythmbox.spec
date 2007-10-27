@@ -1,6 +1,6 @@
 %define version 0.11.2
 
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
