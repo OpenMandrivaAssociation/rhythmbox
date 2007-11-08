@@ -1,6 +1,6 @@
-%define version 0.11.2
+%define version 0.11.3
 
-%define release %mkrel 5
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -15,8 +15,6 @@ Release:	%release
 License:	GPL
 Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
-#gw from Fedora, enable Magnatune and Jamendo by default
-Patch1: rhythmbox-enable-stores.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -31,7 +29,7 @@ BuildRequires:  scrollkeeper
 BuildRequires: libsoup-devel
 BuildRequires: libsexy-devel
 BuildRequires: libxrender-devel
-BuildRequires: pygtk2.0-devel
+BuildRequires: gstreamer0.10-python-devel
 BuildRequires: liblirc-devel
 BuildRequires: desktop-file-utils
 BuildRequires: libcheck-devel
@@ -87,9 +85,6 @@ This is the shared library part of %name.
 
 %prep
 %setup -q
-cd data
-%patch1
-cd -
 
 %build
 %configure2_5x \
