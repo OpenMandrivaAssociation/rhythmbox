@@ -53,6 +53,7 @@ Requires: %gstname-plugins-ugly
 Requires:	%gstname-gnomevfs >= %gstreamer
 Requires:	%gstname-flac >= %gstreamer
 Requires:	dbus-x11
+Requires: gstreamer0.10-python
 Requires: pygtk2.0-libglade
 Requires: gnome-python
 Requires: gnome-python-gconf
