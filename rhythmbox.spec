@@ -16,7 +16,6 @@ License:	GPL
 Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 URL:		http://www.rhythmbox.org
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libid3tag-devel
