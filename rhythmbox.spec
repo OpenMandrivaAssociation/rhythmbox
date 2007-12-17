@@ -147,7 +147,7 @@ rm -rf %{buildroot}
 
 %files -f %name.lang
 %defattr(-, root, root)
-%doc AUTHORS COPYING ChangeLog README NEWS
+%doc AUTHORS COPYING README NEWS
 %config(noreplace) %{_sysconfdir}/gconf/schemas/rhythmbox.schemas
 %{_bindir}/rhythmbox
 %{_bindir}/rhythmbox-client
