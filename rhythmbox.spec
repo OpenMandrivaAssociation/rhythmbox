@@ -1,6 +1,6 @@
-%define version 0.11.3
+%define version 0.11.4
 
-%define release %mkrel 2
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -42,6 +42,7 @@ BuildRequires:  libtotem-plparser-devel >= 1.1.3
 BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
+BuildRequires:  mozilla-firefox-devel
 BuildRequires:  gtk-doc
 #BuildRequires:	automake1.8 gnome-common
 BuildRequires:	intltool
@@ -83,12 +84,24 @@ playback of Ogg Vorbis and Mp3 and burning of CD-Rs.
 
 This is the shared library part of %name.
 
+%package mozilla
+Group: Sound
+Summary: Rhythmbox integration for Mozilla Firefox
+Requires: %name = %version
+
+%description mozilla
+
+This plugin integates Rhythmbox with Mozilla and compatible
+browsers. It provides a handler for itms:// Links to Apples iTunes
+Music Store.
+
 %prep
 %setup -q
 
 %build
 %configure2_5x \
 --enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
+--enable-vala \
 --with-mdns=avahi \
 --enable-gtk-doc
 %make 
@@ -111,7 +124,7 @@ desktop-file-install --vendor="" \
 rm -f  %buildroot%_libdir/%name/plugins/*.a %buildroot%_libdir/*.a
 #gw remove it until there's a devel package
 rm -f  %buildroot%_libdir/librhythmbox-core.{so,la}
-
+rm -f %buildroot%_libdir/mozilla/plugins/lib*a
 
 find %buildroot -name \*.la |xargs chmod 644
 
@@ -163,3 +176,7 @@ rm -rf %{buildroot}
 %files -n %libname
 %defattr(-, root, root)
 %_libdir/librhythmbox-core.so.%{major}*
+
+%files mozilla
+%defattr(-, root, root)
+%_libdir/mozilla/plugins/librhythmbox-itms-detection-plugin.so
