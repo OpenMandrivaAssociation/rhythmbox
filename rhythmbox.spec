@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -15,6 +15,9 @@ Release:	%release
 License:	GPL
 Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
+# gw: from svn: fix for upstream bug #506440 
+# (crash while changing metadata outside of rhythmbox)
+Patch: rhythmbox-5519.patch
 URL:		http://www.rhythmbox.org
 BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
@@ -97,6 +100,7 @@ Music Store.
 
 %prep
 %setup -q
+%patch
 
 %build
 %configure2_5x \
