@@ -19,6 +19,7 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 # (crash while changing metadata outside of rhythmbox)
 Patch: rhythmbox-5519.patch
 URL:		http://www.rhythmbox.org
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libid3tag-devel
