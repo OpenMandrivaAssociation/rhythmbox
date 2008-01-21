@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -12,7 +12,7 @@ Name:		rhythmbox
 Summary:	Music Management Application 
 Version:	%version
 Release:	%release
-License:	GPL
+License:	GPLv2+
 Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 # gw: from svn: fix for upstream bug #506440 
