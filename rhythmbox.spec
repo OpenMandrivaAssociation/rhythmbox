@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -18,6 +18,8 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 # gw: from svn: fix for upstream bug #506440 
 # (crash while changing metadata outside of rhythmbox)
 Patch: rhythmbox-5519.patch
+#gw: fix for upstream bug #512549
+Patch1: rhythmbox-0.11.4-vala.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -29,7 +31,7 @@ BuildRequires:  perl-XML-Parser
 BuildRequires:  libgpod-devel
 BuildRequires:  libflac-devel
 BuildRequires:  scrollkeeper
-BuildRequires: libsoup-devel
+BuildRequires: libsoup-2.2-devel
 BuildRequires: libsexy-devel
 BuildRequires: libxrender-devel
 BuildRequires: gstreamer0.10-python-devel
@@ -99,9 +101,20 @@ This plugin integates Rhythmbox with Mozilla and compatible
 browsers. It provides a handler for itms:// Links to Apples iTunes
 Music Store.
 
+%package upnp
+Group: Sound
+Summary: Rhythmbox UPNP plugin
+Requires: %name = %version-%release
+Requires: python-coherence
+
+%description upnp
+This plugin adds UPNP support to Rhythmbox. It allows playing media
+from, and sending media to UPnP/DLNA network devices.
+
 %prep
 %setup -q
 %patch
+%patch1 -p1
 
 %build
 %configure2_5x \
@@ -176,7 +189,32 @@ rm -rf %{buildroot}
 %_datadir/gtk-doc/html/%name
 %_datadir/dbus-1/services/org.gnome.Rhythmbox.service
 %_libexecdir/rhythmbox-metadata
-%_libdir/%name/
+%dir %_libdir/%name/
+%dir %_libdir/%name/plugins
+%_libdir/%name/plugins/artdisplay
+%_libdir/%name/plugins/audiocd
+%_libdir/%name/plugins/audioscrobbler
+%_libdir/%name/plugins/cd-recorder
+%_libdir/%name/plugins/daap
+%_libdir/%name/plugins/fmradio
+%_libdir/%name/plugins/generic-player
+%_libdir/%name/plugins/ipod
+%_libdir/%name/plugins/iradio
+%_libdir/%name/plugins/jamendo
+%_libdir/%name/plugins/*sample-vala*
+%_libdir/%name/plugins/lirc
+%_libdir/%name/plugins/lyrics
+%_libdir/%name/plugins/magnatune
+%_libdir/%name/plugins/mmkeys
+%_libdir/%name/plugins/mtpdevice
+%_libdir/%name/plugins/power-manager
+%_libdir/%name/plugins/python-console
+%_libdir/%name/plugins/rb
+%_libdir/%name/plugins/visualizer
+
+%files upnp
+%defattr(-, root, root)
+%_libdir/%name/plugins/upnp_coherence
 
 %files -n %libname
 %defattr(-, root, root)
