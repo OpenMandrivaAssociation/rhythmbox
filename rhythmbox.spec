@@ -96,7 +96,6 @@ Summary: Rhythmbox integration for Mozilla Firefox
 Requires: %name = %version
 
 %description mozilla
-
 This plugin integates Rhythmbox with Mozilla and compatible
 browsers. It provides a handler for itms:// Links to Apples iTunes
 Music Store.
