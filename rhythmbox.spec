@@ -149,10 +149,12 @@ desktop-file-install --vendor="" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 
-rm -f  %buildroot%_libdir/%name/plugins/*.a %buildroot%_libdir/*.a
+rm -f  %buildroot%_libdir/%name/plugins/*/*.a \
+   %buildroot%_libdir/%name/plugins/*.a \
+   %buildroot%_libdir/*.a \
+   %buildroot%_libdir/mozilla/plugins/lib*a
 #gw remove it until there's a devel package
 rm -f  %buildroot%_libdir/librhythmbox-core.{so,la}
-rm -f %buildroot%_libdir/mozilla/plugins/lib*a
 
 find %buildroot -name \*.la |xargs chmod 644
 
