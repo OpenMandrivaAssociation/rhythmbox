@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 5
+%define release %mkrel 6
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -119,6 +119,7 @@ from, and sending media to UPnP/DLNA network devices.
 %patch
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 # patch 2:
 aclocal
 autoconf || autoconf
