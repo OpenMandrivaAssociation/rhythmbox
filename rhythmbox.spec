@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 4
+%define release %mkrel 5
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -20,6 +20,10 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 Patch: rhythmbox-5519.patch
 #gw: fix for upstream bug #512549
 Patch1: rhythmbox-0.11.4-vala.patch
+#gw: from Fedora, fix build with new libsoup 2.4
+Patch2: soup24.patch
+#gw: from svn, fix b.g.o #510406 (new multimedia keys API)
+Patch3: rhythmbox-0.11.4-mmkeys.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -31,7 +35,7 @@ BuildRequires:  perl-XML-Parser
 BuildRequires:  libgpod-devel
 BuildRequires:  libflac-devel
 BuildRequires:  scrollkeeper
-BuildRequires: libsoup-2.2-devel
+BuildRequires: libsoup-devel
 BuildRequires: libsexy-devel
 BuildRequires: libxrender-devel
 BuildRequires: gstreamer0.10-python-devel
@@ -50,7 +54,7 @@ BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  mozilla-firefox-devel
 BuildRequires:  gtk-doc
-#BuildRequires:	automake1.8 gnome-common
+BuildRequires:	gnome-common
 BuildRequires:	intltool
 BuildRequires:	gnome-doc-utils
 Requires: %gstname-plugins-base
@@ -114,6 +118,12 @@ from, and sending media to UPnP/DLNA network devices.
 %setup -q
 %patch
 %patch1 -p1
+%patch2 -p1
+# patch 2:
+aclocal
+autoconf || autoconf
+autoheader
+automake -a -c
 
 %build
 %configure2_5x \
