@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 7
+%define release %mkrel 8
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -15,6 +15,8 @@ Release:	%release
 License:	GPLv2+
 Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
+# gw take default Internet radio station listing from Fedora:
+Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 # gw: from svn: fix for upstream bug #506440 
 # (crash while changing metadata outside of rhythmbox)
 Patch: rhythmbox-5519.patch
@@ -24,6 +26,12 @@ Patch1: rhythmbox-0.11.4-vala.patch
 Patch2: soup24.patch
 #gw: from svn, fix b.g.o #510406 (new multimedia keys API)
 Patch3: rhythmbox-0.11.4-mmkeys.patch
+#gw: from Fedora: http://bugzilla.gnome.org/show_bug.cgi?id=499208
+Patch4: rhythmbox-0.11.3-force-python-thread-init.patch
+#gw: from Fedora: http://bugzilla.gnome.org/show_bug.cgi?id=510323
+Patch5: x-content.patch
+#gw: add more radio stations
+Patch6: rhythmbox-more-radios.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -116,10 +124,14 @@ from, and sending media to UPnP/DLNA network devices.
 
 %prep
 %setup -q
+cp %SOURCE1 .
 %patch
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p0
 # patch 2:
 aclocal
 autoconf || autoconf
@@ -157,6 +169,10 @@ rm -f  %buildroot%_libdir/%name/plugins/*/*.a \
 rm -f  %buildroot%_libdir/librhythmbox-core.{so,la}
 
 find %buildroot -name \*.la |xargs chmod 644
+
+# Replace the default radios with Ogg Radios
+cp -a rhythmbox-iradio-initial.pls %{buildroot}%{_libdir}/rhythmbox/plugins/iradio/iradio-initial.pls
+
 
 %check
 #gw I couldn't make the tests run in the iurt chroot
