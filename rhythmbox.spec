@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 8
+%define release %mkrel 10
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -32,6 +32,16 @@ Patch4: rhythmbox-0.11.3-force-python-thread-init.patch
 Patch5: x-content.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
+#gw: from svn: add lastfm URL handler for GNOME and fix playlist handling
+# http://bugzilla.gnome.org/show_bug.cgi?id=490122
+Patch7: rhythmbox-5599-lastfm-url-handler.patch
+#gw: from Fedora, add album artwork to the iPod
+# http://bugzilla.gnome.org/show_bug.cgi?id=493996
+Patch8: rb-ipod-save-artwork.patch
+#gw: from Fedora, handle new rhythmbox being called with a directory path
+# to a mounted media player
+# http://bugzilla.gnome.org/show_bug.cgi?id=519737
+Patch9: rb-activate-generic-players-from-uri.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -132,6 +142,9 @@ cp %SOURCE1 .
 %patch4 -p1
 %patch5 -p1
 %patch6 -p0
+%patch7 -p0
+%patch8 -p1
+%patch9 -p0
 # patch 2:
 aclocal
 autoconf || autoconf
