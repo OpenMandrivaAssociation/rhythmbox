@@ -1,6 +1,6 @@
 %define version 0.11.4
 
-%define release %mkrel 10
+%define release %mkrel 11
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -42,6 +42,8 @@ Patch8: rb-ipod-save-artwork.patch
 # to a mounted media player
 # http://bugzilla.gnome.org/show_bug.cgi?id=519737
 Patch9: rb-activate-generic-players-from-uri.patch
+# gw: from svn, update list of default lyrics search engines
+Patch10: rhythmbox-5605-lyrics-search-engines.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -145,6 +147,7 @@ cp %SOURCE1 .
 %patch7 -p0
 %patch8 -p1
 %patch9 -p0
+%patch10 -p0
 # patch 2:
 aclocal
 autoconf || autoconf
