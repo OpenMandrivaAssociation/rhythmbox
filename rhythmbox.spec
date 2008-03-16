@@ -1,6 +1,6 @@
-%define version 0.11.4
+%define version 0.11.5
 
-%define release %mkrel 11
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -17,33 +17,10 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-# gw: from svn: fix for upstream bug #506440 
-# (crash while changing metadata outside of rhythmbox)
-Patch: rhythmbox-5519.patch
-#gw: fix for upstream bug #512549
-Patch1: rhythmbox-0.11.4-vala.patch
-#gw: from Fedora, fix build with new libsoup 2.4
-Patch2: soup24.patch
-#gw: from svn, fix b.g.o #510406 (new multimedia keys API)
-Patch3: rhythmbox-0.11.4-mmkeys.patch
 #gw: from Fedora: http://bugzilla.gnome.org/show_bug.cgi?id=499208
 Patch4: rhythmbox-0.11.3-force-python-thread-init.patch
-#gw: from Fedora: http://bugzilla.gnome.org/show_bug.cgi?id=510323
-Patch5: x-content.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-#gw: from svn: add lastfm URL handler for GNOME and fix playlist handling
-# http://bugzilla.gnome.org/show_bug.cgi?id=490122
-Patch7: rhythmbox-5599-lastfm-url-handler.patch
-#gw: from Fedora, add album artwork to the iPod
-# http://bugzilla.gnome.org/show_bug.cgi?id=493996
-Patch8: rb-ipod-save-artwork.patch
-#gw: from Fedora, handle new rhythmbox being called with a directory path
-# to a mounted media player
-# http://bugzilla.gnome.org/show_bug.cgi?id=519737
-Patch9: rb-activate-generic-players-from-uri.patch
-# gw: from svn, update list of default lyrics search engines
-Patch10: rhythmbox-5605-lyrics-search-engines.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -137,29 +114,16 @@ from, and sending media to UPnP/DLNA network devices.
 %prep
 %setup -q
 cp %SOURCE1 .
-%patch
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
 %patch4 -p1
-%patch5 -p1
 %patch6 -p0
-%patch7 -p0
-%patch8 -p1
-%patch9 -p0
-%patch10 -p0
-# patch 2:
-aclocal
-autoconf || autoconf
-autoheader
-automake -a -c
 
 %build
 %configure2_5x \
 --enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
 --enable-vala \
 --with-mdns=avahi \
---enable-gtk-doc
+
+#--enable-gtk-doc
 %make 
 
 %install
