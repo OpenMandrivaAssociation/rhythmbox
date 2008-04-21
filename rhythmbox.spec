@@ -1,6 +1,6 @@
 %define version 0.11.5
 
-%define release %mkrel 4
+%define release %mkrel 5
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -22,8 +22,23 @@ Patch: rhythmbox-5622-gtk-doc-build.patch
 Patch1: rhythmbox-0.11.4-source-unref-crasher.patch
 #Frederik Himpe: from svn, fix last.fm with libsoup 2.4
 Patch2: rhythmbox-0.11.5-last.fm-libsoup-2.4.patch
+# fix podcast parsing
+# http://bugzilla.gnome.org/show_bug.cgi?id=524967
+Patch3: rhythmbox-0.11.5-force-podcast-parsing.patch
+# gw fix CDDA autostart from nautilus
+# https://bugzilla.redhat.com/show_bug.cgi?id=440489
+Patch4: rb-gvfs-cdda-activation.patch
+# gw remove invalid file name characters for VFAT on iPods
+# https://bugzilla.redhat.com/show_bug.cgi?id=440668
+Patch5: rhythmbox-0.11.5-ipod-vfat.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
+# gw fix a deadlock with the crossfade backend
+# http://bugzilla.gnome.org/show_bug.cgi?id=512226
+Patch7: rhythmbox-0.11.5-xfade-deadlock.patch
+# gw update to Amazon cover artwork API
+# http://bugzilla.gnome.org/show_bug.cgi?id=513851
+Patch8: rhythmbox-0.11.5-amazon-ecs.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -120,6 +135,11 @@ cp %SOURCE1 .
 %patch
 %patch1
 %patch2 -p1
+%patch3 -p0 -b .force-podcast
+%patch4 -p0 -b .cdda-activation
+%patch5 -p0 -b .ipod-vfat
+%patch7 -p1 -b .xfade-deadlock
+%patch8 -p1 -b .amazon-ecs
 %patch6 -p0
 #gw patch 0:
 automake
@@ -129,7 +149,8 @@ automake
 --enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
 --enable-vala \
 --with-mdns=avahi \
---enable-gtk-doc
+--enable-gtk-doc \
+--with-gnome-keyring
 %make 
 
 %install
