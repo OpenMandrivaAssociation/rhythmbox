@@ -1,6 +1,6 @@
 %define version 0.11.5
 
-%define release %mkrel 5
+%define release %mkrel 6
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -39,6 +39,13 @@ Patch7: rhythmbox-0.11.5-xfade-deadlock.patch
 # gw update to Amazon cover artwork API
 # http://bugzilla.gnome.org/show_bug.cgi?id=513851
 Patch8: rhythmbox-0.11.5-amazon-ecs.patch
+# fhimpe: update playing state when starting internet radio
+# http://bugzilla.gnome.org/show_bug.cgi?id=482506
+Patch9: rhythmbox-0.11.5-xfade-set-playing-state.patch
+# fhimpe: some files cannot be played with crossfade backend
+# http://bugzilla.gnome.org/show_bug.cgi?id=484210
+Patch10: rhythmbox-0.11.5-xfade-preroll-queue-size.patch
+
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -141,6 +148,8 @@ cp %SOURCE1 .
 %patch7 -p1 -b .xfade-deadlock
 %patch8 -p1 -b .amazon-ecs
 %patch6 -p0
+%patch9 -p1 -b .xfade-play-state
+%patch10 -p1 -b .xfade-preroll-queue
 #gw patch 0:
 automake
 
