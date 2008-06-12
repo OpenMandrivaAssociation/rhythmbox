@@ -202,19 +202,23 @@ kill $(cat /tmp/.X$XDISPLAY-lock) || :
 %clean
 rm -rf %{buildroot}
 
+%if %mdkversion < 200900
 %post
 %update_menus
 %post_install_gconf_schemas rhythmbox
 %update_scrollkeeper
 %update_icon_cache hicolor
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas rhythmbox
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %clean_scrollkeeper
 %clean_icon_cache hicolor
+%endif
 
 %if %mdkversion < 200900
 %post -n %libname -p /sbin/ldconfig
