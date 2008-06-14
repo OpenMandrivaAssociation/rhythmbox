@@ -1,6 +1,6 @@
 %define version 0.11.5
 
-%define release %mkrel 6
+%define release %mkrel 7
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -45,7 +45,9 @@ Patch9: rhythmbox-0.11.5-xfade-set-playing-state.patch
 # fhimpe: some files cannot be played with crossfade backend
 # http://bugzilla.gnome.org/show_bug.cgi?id=484210
 Patch10: rhythmbox-0.11.5-xfade-preroll-queue-size.patch
-
+# gw: fix crash in crossfader (from SVN)
+# http://bugzilla.gnome.org/show_bug.cgi?id=529427
+Patch11: rhythmbox-r5745-crossfade-crash.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -150,6 +152,7 @@ cp %SOURCE1 .
 %patch6 -p0
 %patch9 -p1 -b .xfade-play-state
 %patch10 -p1 -b .xfade-preroll-queue
+%patch11 -p0
 #gw patch 0:
 automake
 
