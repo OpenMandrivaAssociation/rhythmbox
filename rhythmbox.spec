@@ -157,6 +157,8 @@ cp %SOURCE1 .
 automake
 
 %build
+#gw else librhythmbox-core does not build
+%define _disable_ld_no_undefined 1
 %configure2_5x \
 --enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
 --enable-vala \
