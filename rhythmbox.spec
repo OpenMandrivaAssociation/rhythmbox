@@ -1,6 +1,6 @@
-%define version 0.11.5
+%define version 0.11.6
 
-%define release %mkrel 8
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -12,44 +12,16 @@ Name:		rhythmbox
 Summary:	Music Management Application 
 Version:	%version
 Release:	%release
-License:	GPLv2+
+License:	GPLv2+ with exception
 Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-Patch: rhythmbox-5622-gtk-doc-build.patch
-#gw from svn, fix possible crasher
-Patch1: rhythmbox-0.11.4-source-unref-crasher.patch
-#Frederik Himpe: from svn, fix last.fm with libsoup 2.4
-Patch2: rhythmbox-0.11.5-last.fm-libsoup-2.4.patch
-# fix podcast parsing
-# http://bugzilla.gnome.org/show_bug.cgi?id=524967
-Patch3: rhythmbox-0.11.5-force-podcast-parsing.patch
-# gw fix CDDA autostart from nautilus
-# https://bugzilla.redhat.com/show_bug.cgi?id=440489
-Patch4: rb-gvfs-cdda-activation.patch
 # gw remove invalid file name characters for VFAT on iPods
 # https://bugzilla.redhat.com/show_bug.cgi?id=440668
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-# gw fix a deadlock with the crossfade backend
-# http://bugzilla.gnome.org/show_bug.cgi?id=512226
-Patch7: rhythmbox-0.11.5-xfade-deadlock.patch
-# gw update to Amazon cover artwork API
-# http://bugzilla.gnome.org/show_bug.cgi?id=513851
-Patch8: rhythmbox-0.11.5-amazon-ecs.patch
-# fhimpe: update playing state when starting internet radio
-# http://bugzilla.gnome.org/show_bug.cgi?id=482506
-Patch9: rhythmbox-0.11.5-xfade-set-playing-state.patch
-# fhimpe: some files cannot be played with crossfade backend
-# http://bugzilla.gnome.org/show_bug.cgi?id=484210
-Patch10: rhythmbox-0.11.5-xfade-preroll-queue-size.patch
-# gw: fix crash in crossfader (from SVN)
-# http://bugzilla.gnome.org/show_bug.cgi?id=529427
-Patch11: rhythmbox-r5745-crossfade-crash.patch
-#gw from svn, fix vala plugin build
-Patch12: rhythmbox-r5787-fix-vala-build.patch
 URL:		http://www.rhythmbox.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -143,21 +115,8 @@ from, and sending media to UPnP/DLNA network devices.
 %prep
 %setup -q
 cp %SOURCE1 .
-%patch
-%patch1
-%patch2 -p1
-%patch3 -p0 -b .force-podcast
-%patch4 -p0 -b .cdda-activation
 %patch5 -p0 -b .ipod-vfat
-%patch7 -p1 -b .xfade-deadlock
-%patch8 -p1 -b .amazon-ecs
 %patch6 -p0
-%patch9 -p1 -b .xfade-play-state
-%patch10 -p1 -b .xfade-preroll-queue
-%patch11 -p0
-%patch12 -p0
-#gw patch 0,12:
-automake
 
 %build
 #gw else librhythmbox-core does not build
@@ -216,24 +175,18 @@ rm -rf %{buildroot}
 %post_install_gconf_schemas rhythmbox
 %update_scrollkeeper
 %update_icon_cache hicolor
-%endif
 
-%preun
-%preun_uninstall_gconf_schemas rhythmbox
-
-%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %clean_scrollkeeper
 %clean_icon_cache hicolor
-%endif
 
-%if %mdkversion < 200900
 %post -n %libname -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
 %postun -n %libname -p /sbin/ldconfig
 %endif
+
+%preun
+%preun_uninstall_gconf_schemas rhythmbox
 
 %files -f %name.lang
 %defattr(-, root, root)
@@ -256,6 +209,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/audioscrobbler
 %_libdir/%name/plugins/cd-recorder
 %_libdir/%name/plugins/daap
+%_libdir/%name/plugins/dontreallyclose
 %_libdir/%name/plugins/fmradio
 %_libdir/%name/plugins/generic-player
 %_libdir/%name/plugins/ipod
