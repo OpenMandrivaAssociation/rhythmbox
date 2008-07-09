@@ -22,7 +22,7 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-URL:		http://www.rhythmbox.org
+URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
