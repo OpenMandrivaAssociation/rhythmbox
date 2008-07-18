@@ -1,6 +1,6 @@
 %define version 0.11.6
 
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -17,6 +17,7 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
+Patch0: rhythmbox-0.11.6-libmtp-0.3.0-build-fix.patch
 # gw remove invalid file name characters for VFAT on iPods
 # https://bugzilla.redhat.com/show_bug.cgi?id=440668
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
@@ -47,7 +48,7 @@ BuildRequires:  libgstreamer-plugins-base-devel >= %gstreamer
 BuildRequires:  x11-server-xvfb
 BuildRequires:  libnautilus-burn-devel > 2.11.3
 BuildRequires:  libtotem-plparser-devel >= 1.1.3
-BuildRequires:  libmtp-devel
+BuildRequires:  libmtp-devel >= 0.3.0
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  mozilla-firefox-devel
@@ -115,6 +116,7 @@ from, and sending media to UPnP/DLNA network devices.
 %prep
 %setup -q
 cp %SOURCE1 .
+%patch0 -p0
 %patch5 -p0 -b .ipod-vfat
 %patch6 -p0
 
