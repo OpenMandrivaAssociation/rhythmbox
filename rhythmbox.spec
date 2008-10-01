@@ -53,7 +53,7 @@ BuildRequires:  libtotem-plparser-devel >= 1.1.3
 BuildRequires:  libmtp-devel >= 0.3.0
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
-BuildRequires:  mozilla-firefox-devel
+BuildRequires:  xulrunner-devel
 BuildRequires:  gtk-doc
 BuildRequires:	gnome-common
 BuildRequires:	intltool
