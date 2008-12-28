@@ -1,6 +1,6 @@
 %define version 0.11.6
 
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -20,6 +20,7 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 Patch0: rhythmbox-0.11.6-libmtp-0.3.0-build-fix.patch
 #gw from Fedora, fix playback start with the crossfader
 Patch1:	rhythmbox-0.11.5-xfade-buffering.patch
+Patch2: rhythmbox-0.11.6-format-strings.patch
 # gw remove invalid file name characters for VFAT on iPods
 # https://bugzilla.redhat.com/show_bug.cgi?id=440668
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
@@ -120,6 +121,7 @@ from, and sending media to UPnP/DLNA network devices.
 cp %SOURCE1 .
 %patch0 -p0
 %patch1 -p1 -b .xfade
+%patch2 -p1
 %patch5 -p0 -b .ipod-vfat
 %patch6 -p0
 
