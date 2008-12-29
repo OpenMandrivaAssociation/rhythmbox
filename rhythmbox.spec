@@ -20,6 +20,7 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 Patch0: rhythmbox-0.11.6-libmtp-0.3.0-build-fix.patch
 #gw from Fedora, fix playback start with the crossfader
 Patch1:	rhythmbox-0.11.5-xfade-buffering.patch
+#gw this is incomplete, the generated python binding is missing
 Patch2: rhythmbox-0.11.6-format-strings.patch
 # gw remove invalid file name characters for VFAT on iPods
 # https://bugzilla.redhat.com/show_bug.cgi?id=440668
@@ -121,11 +122,13 @@ from, and sending media to UPnP/DLNA network devices.
 cp %SOURCE1 .
 %patch0 -p0
 %patch1 -p1 -b .xfade
-%patch2 -p1
 %patch5 -p0 -b .ipod-vfat
 %patch6 -p0
+%patch2 -p1
 
 %build
+#gw rb.c
+%define Werror_cflags %nil
 #gw else librhythmbox-core does not build
 %define _disable_ld_no_undefined 1
 %configure2_5x \
