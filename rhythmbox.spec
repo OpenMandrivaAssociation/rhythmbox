@@ -1,6 +1,6 @@
 %define version 0.11.6
 
-%define release %mkrel 4
+%define release %mkrel 5
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -27,6 +27,11 @@ Patch2: rhythmbox-0.11.6-format-strings.patch
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
+#gw from svn, fix crash on ipod eject
+# https://qa.mandriva.com/show_bug.cgi?id=46813
+# http://bugzilla.gnome.org/show_bug.cgi?id=467420
+Patch7: rhythmbox-r6067-fix-ipod-crash.patch
+
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -125,7 +130,7 @@ cp %SOURCE1 .
 %patch5 -p0 -b .ipod-vfat
 %patch6 -p0
 %patch2 -p1
-
+%patch7 -p1
 %build
 #gw rb.c
 %define Werror_cflags %nil
