@@ -1,6 +1,6 @@
 %define version 0.11.6
-
-%define release %mkrel 5
+%define svn r6126
+%define release %mkrel %svn.1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -14,23 +14,14 @@ Version:	%version
 Release:	%release
 License:	GPLv2+ with exception
 Group:		Sound
-Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
+Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{svn}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-Patch0: rhythmbox-0.11.6-libmtp-0.3.0-build-fix.patch
-#gw from Fedora, fix playback start with the crossfader
-Patch1:	rhythmbox-0.11.5-xfade-buffering.patch
-#gw this is incomplete, the generated python binding is missing
-Patch2: rhythmbox-0.11.6-format-strings.patch
 # gw remove invalid file name characters for VFAT on iPods
 # https://bugzilla.redhat.com/show_bug.cgi?id=440668
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-#gw from svn, fix crash on ipod eject
-# https://qa.mandriva.com/show_bug.cgi?id=46813
-# http://bugzilla.gnome.org/show_bug.cgi?id=467420
-Patch7: rhythmbox-r6067-fix-ipod-crash.patch
 
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
@@ -38,6 +29,7 @@ BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libid3tag-devel
 BuildRequires:  libmusicbrainz-devel
+BuildRequires:  libmusicbrainz3-devel
 BuildRequires:  libvorbis-devel
 BuildRequires:  perl-XML-Parser
 BuildRequires:  libgpod-devel
@@ -123,14 +115,11 @@ This plugin adds UPNP support to Rhythmbox. It allows playing media
 from, and sending media to UPnP/DLNA network devices.
 
 %prep
-%setup -q
+%setup -q -n %name
 cp %SOURCE1 .
-%patch0 -p0
-%patch1 -p1 -b .xfade
 %patch5 -p0 -b .ipod-vfat
 %patch6 -p0
-%patch2 -p1
-%patch7 -p1
+./autogen.sh
 %build
 #gw rb.c
 %define Werror_cflags %nil
@@ -231,7 +220,6 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/iradio
 %_libdir/%name/plugins/jamendo
 %_libdir/%name/plugins/*sample-vala*
-%_libdir/%name/plugins/lirc
 %_libdir/%name/plugins/lyrics
 %_libdir/%name/plugins/magnatune
 %_libdir/%name/plugins/mmkeys
@@ -239,6 +227,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/power-manager
 %_libdir/%name/plugins/python-console
 %_libdir/%name/plugins/rb
+%_libdir/%name/plugins/rblirc
 %_libdir/%name/plugins/visualizer
 
 %files upnp
