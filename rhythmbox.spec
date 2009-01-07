@@ -1,6 +1,6 @@
 %define version 0.11.6
 %define svn r6126
-%define release %mkrel %svn.1
+%define release %mkrel 5.%svn.1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
