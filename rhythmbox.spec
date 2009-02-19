@@ -1,5 +1,5 @@
 %define version 0.11.6
-%define svn r6154
+%define svn r6156
 %define release %mkrel 5.%svn.1
 
 %define		gstreamer 0.10.0
@@ -31,7 +31,6 @@ BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libid3tag-devel
-BuildRequires:  libmusicbrainz-devel
 BuildRequires:  libmusicbrainz3-devel
 BuildRequires:  libvorbis-devel
 BuildRequires:  libgpod-devel
