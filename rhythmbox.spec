@@ -122,7 +122,7 @@ cp %SOURCE1 .
 %patch -p0
 %patch5 -p0 -b .ipod-vfat
 %patch6 -p0
-NOCONFIGURE=1 ./autogen.sh
+./autogen.sh
 
 %build
 #gw rb.c
