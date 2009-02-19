@@ -1,5 +1,5 @@
 %define version 0.11.6
-%define svn r6131
+%define svn r6154
 %define release %mkrel 5.%svn.1
 
 %define		gstreamer 0.10.0
@@ -17,6 +17,9 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{svn}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
+#gw from Fedora, use the pulsesink's volume instead of our own one
+#http://bugzilla.gnome.org/show_bug.cgi?id=571606
+Patch: rb-use-pulsesink-volume.patch
 # gw remove invalid file name characters for VFAT on iPods
 # https://bugzilla.redhat.com/show_bug.cgi?id=440668
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
@@ -31,7 +34,6 @@ BuildRequires:  libid3tag-devel
 BuildRequires:  libmusicbrainz-devel
 BuildRequires:  libmusicbrainz3-devel
 BuildRequires:  libvorbis-devel
-BuildRequires:  perl-XML-Parser
 BuildRequires:  libgpod-devel
 BuildRequires:  libflac-devel
 BuildRequires:  scrollkeeper
@@ -117,16 +119,18 @@ from, and sending media to UPnP/DLNA network devices.
 %prep
 %setup -q -n %name
 cp %SOURCE1 .
+%patch -p0
 %patch5 -p0 -b .ipod-vfat
 %patch6 -p0
-./autogen.sh
+NOCONFIGURE=1 ./autogen.sh
+
 %build
 #gw rb.c
 %define Werror_cflags %nil
 #gw else librhythmbox-core does not build
 %define _disable_ld_no_undefined 1
 %configure2_5x \
---enable-nautilus-menu --enable-ipod --enable-ipod-writing --enable-daap --enable-tag-writing \
+--enable-daap \
 --enable-vala \
 --with-mdns=avahi \
 --enable-gtk-doc \
