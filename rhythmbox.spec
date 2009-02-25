@@ -1,6 +1,6 @@
 %define version 0.11.6
-%define svn r6163
-%define release %mkrel 5.%svn.2
+%define svn r6164
+%define release %mkrel 5.%svn.1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -31,9 +31,6 @@ BuildRequires:  libgnomeui2-devel
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libid3tag-devel
 BuildRequires:  libmusicbrainz3-devel
-# gw musicbrainz 2.x is still needed:
-# http://bugzilla.gnome.org/show_bug.cgi?id=573086
-BuildRequires:  libmusicbrainz-devel
 BuildRequires:  libvorbis-devel
 BuildRequires:  libgpod-devel
 BuildRequires:  libflac-devel
