@@ -22,9 +22,6 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 Patch: rb-use-pulsesink-volume-2.patch
 #gw fix for the above
 Patch1: rhythmbox-missing-header.patch
-# gw remove invalid file name characters for VFAT on iPods
-# https://bugzilla.redhat.com/show_bug.cgi?id=440668
-Patch5: rhythmbox-0.11.5-ipod-vfat.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 
@@ -122,7 +119,6 @@ from, and sending media to UPnP/DLNA network devices.
 cp %SOURCE1 .
 %patch -p0
 %patch1 -p1
-%patch5 -p0 -b .ipod-vfat
 %patch6 -p0
 ./autogen.sh
 
