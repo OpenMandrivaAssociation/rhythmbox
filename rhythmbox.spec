@@ -1,5 +1,5 @@
 %define version 0.11.6
-%define svn r6156
+%define svn r6163
 %define release %mkrel 5.%svn.1
 
 %define		gstreamer 0.10.0
@@ -19,7 +19,7 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{svn}.tar.bz2
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 #gw from Fedora, use the pulsesink's volume instead of our own one
 #http://bugzilla.gnome.org/show_bug.cgi?id=571606
-Patch: rb-use-pulsesink-volume.patch
+Patch: rb-use-pulsesink-volume-2.patch
 # gw remove invalid file name characters for VFAT on iPods
 # https://bugzilla.redhat.com/show_bug.cgi?id=440668
 Patch5: rhythmbox-0.11.5-ipod-vfat.patch
