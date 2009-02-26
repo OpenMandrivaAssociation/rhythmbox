@@ -1,5 +1,5 @@
 %define version 0.11.6
-%define svn r6164
+%define svn r6165
 %define release %mkrel 5.%svn.1
 
 %define		gstreamer 0.10.0
@@ -20,8 +20,6 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 #gw from Fedora, use the pulsesink's volume instead of our own one
 #http://bugzilla.gnome.org/show_bug.cgi?id=571606
 Patch: rb-use-pulsesink-volume-2.patch
-#gw fix for the above
-Patch1: rhythmbox-missing-header.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 
@@ -117,8 +115,7 @@ from, and sending media to UPnP/DLNA network devices.
 %prep
 %setup -q -n %name
 cp %SOURCE1 .
-%patch -p0
-%patch1 -p1
+%patch -p1
 %patch6 -p0
 ./autogen.sh
 
