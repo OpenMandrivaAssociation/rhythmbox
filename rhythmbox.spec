@@ -1,5 +1,5 @@
 %define version 0.11.6
-%define svn r6165
+%define svn r6178
 %define release %mkrel 5.%svn.1
 
 %define		gstreamer 0.10.0
@@ -17,9 +17,6 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{svn}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-#gw from Fedora, use the pulsesink's volume instead of our own one
-#http://bugzilla.gnome.org/show_bug.cgi?id=571606
-Patch: rb-use-pulsesink-volume-2.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 
@@ -115,7 +112,6 @@ from, and sending media to UPnP/DLNA network devices.
 %prep
 %setup -q -n %name
 cp %SOURCE1 .
-%patch -p1
 %patch6 -p0
 ./autogen.sh
 
