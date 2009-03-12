@@ -31,6 +31,7 @@ BuildRequires:  libmusicbrainz3-devel
 BuildRequires:  brasero-devel
 %else
 BuildRequires:  libmusicbrainz-devel
+BuildRequires:  libnautilus-burn-devel > 2.11.3
 %endif
 BuildRequires:  libvorbis-devel
 BuildRequires:  libgpod-devel
