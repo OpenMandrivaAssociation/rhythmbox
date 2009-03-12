@@ -19,7 +19,8 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{svn}.tar.bz2
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-
+#gw fix a warning exposed on 2008.1 only
+Patch7: rhythmbox-r6202-missing-header.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -50,7 +51,7 @@ BuildRequires:  libnotify-devel >= 0.3.2
 BuildRequires:  libgstreamer-plugins-base-devel >= %gstreamer
 BuildRequires:  x11-server-xvfb
 BuildRequires:  libtotem-plparser-devel >= 1.1.3
-BuildRequires:  libmtp-devel >= 0.3.0
+BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  xulrunner-devel
@@ -119,6 +120,7 @@ from, and sending media to UPnP/DLNA network devices.
 %setup -q -n %name
 cp %SOURCE1 .
 %patch6 -p0
+%patch7 -p0
 ./autogen.sh
 
 %build
