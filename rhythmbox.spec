@@ -59,6 +59,7 @@ BuildRequires:  gtk-doc
 BuildRequires:	gnome-common
 BuildRequires:	intltool
 BuildRequires:	gnome-doc-utils
+Requires: %libname >= %version-%release
 Requires: %gstname-plugins-base
 Requires: %gstname-plugins-good
 Requires: %gstname-plugins-ugly
