@@ -1,6 +1,5 @@
-%define version 0.11.99.3
-%define svn r6225
-%define release %mkrel 0.%svn.1
+%define version 0.12.0
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -14,7 +13,7 @@ Version:	%version
 Release:	%release
 License:	GPLv2+ with exception
 Group:		Sound
-Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{svn}.tar.bz2
+Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 #gw: add more radio stations
@@ -116,10 +115,9 @@ This plugin adds UPNP support to Rhythmbox. It allows playing media
 from, and sending media to UPnP/DLNA network devices.
 
 %prep
-%setup -q -n %name
+%setup -q
 cp %SOURCE1 .
 %patch6 -p0
-./autogen.sh
 
 %build
 #gw rb.c
