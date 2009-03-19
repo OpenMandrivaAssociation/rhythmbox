@@ -1,5 +1,5 @@
-%define version 0.11.99.2
-%define svn r6216
+%define version 0.11.99.3
+%define svn r6225
 %define release %mkrel 0.%svn.1
 
 %define		gstreamer 0.10.0
