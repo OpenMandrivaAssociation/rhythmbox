@@ -1,5 +1,5 @@
 %define version 0.12.0
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -16,6 +16,10 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
+#gw from svn, use decodebin2 instead of decodebin, fixes chained Ogg files
+Patch1: rb-0.12.0-use-decodebin2.patch
+#gw fix crashes with PSP and Nokia 770
+Patch2: fix-psp-entry-types.diff
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -116,6 +120,9 @@ from, and sending media to UPnP/DLNA network devices.
 
 %prep
 %setup -q
+%patch1 -p0 -b .decodebin2
+%patch2 -p1 -b .psp-crasher
+
 cp %SOURCE1 .
 %patch6 -p0
 
@@ -159,6 +166,21 @@ find %buildroot -name \*.la |xargs chmod 644
 # Replace the default radios with Ogg Radios
 cp -a rhythmbox-iradio-initial.pls %{buildroot}%{_libdir}/rhythmbox/plugins/iradio/iradio-initial.pls
 
+# save space by linking identical images in translated docs
+helpdir=$RPM_BUILD_ROOT%{_datadir}/gnome/help/%{name}
+for f in $helpdir/C/figures/*.png; do
+  b="$(basename $f)"
+  for d in $helpdir/*; do
+    if [ -d "$d" -a "$d" != "$helpdir/C" ]; then
+      g="$d/figures/$b"
+      if [ -f "$g" ]; then
+        if cmp -s $f $g; then
+          rm "$g"; ln -s "../../C/figures/$b" "$g"
+        fi
+      fi
+    fi
+  done
+done
 
 %check
 #gw I couldn't make the tests run in the iurt chroot
