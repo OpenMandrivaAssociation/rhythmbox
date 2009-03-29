@@ -1,5 +1,5 @@
 %define version 0.12.0
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -20,6 +20,9 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 Patch1: rb-0.12.0-use-decodebin2.patch
 #gw fix crashes with PSP and Nokia 770
 Patch2: fix-psp-entry-types.diff
+#gw from svn, fix crash when switching to a different CD writer
+#http://bugzilla.gnome.org/show_bug.cgi?id=365154
+Patch3: rhythmbox-r6259-fix-cd-writer-selection.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -122,6 +125,7 @@ from, and sending media to UPnP/DLNA network devices.
 %setup -q
 %patch1 -p0 -b .decodebin2
 %patch2 -p1 -b .psp-crasher
+%patch3 -p0
 
 cp %SOURCE1 .
 %patch6 -p0
