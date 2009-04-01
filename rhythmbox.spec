@@ -1,5 +1,5 @@
 %define version 0.12.0
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -66,7 +66,7 @@ BuildRequires:	gnome-doc-utils
 Requires: %libname >= %version-%release
 Requires: %gstname-plugins-base
 Requires: %gstname-plugins-good
-Requires: %gstname-plugins-ugly
+Suggests: %gstname-plugins-ugly
 Requires:	%gstname-gnomevfs >= %gstreamer
 Requires:	%gstname-flac >= %gstreamer
 Requires:	dbus-x11
