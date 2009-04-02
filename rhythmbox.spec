@@ -1,5 +1,5 @@
 %define version 0.12.0
-%define release %mkrel 4
+%define release %mkrel 5
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -23,6 +23,9 @@ Patch2: fix-psp-entry-types.diff
 #gw from svn, fix crash when switching to a different CD writer
 #http://bugzilla.gnome.org/show_bug.cgi?id=365154
 Patch3: rhythmbox-r6259-fix-cd-writer-selection.patch
+#gw from svn, fix crash in xfade while viewing metadata
+#http://bugzilla.gnome.org/show_bug.cgi?id=576031
+Patch4: rhythmbox-r6238-fix-xfade-crash.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -126,6 +129,7 @@ from, and sending media to UPnP/DLNA network devices.
 %patch1 -p0 -b .decodebin2
 %patch2 -p1 -b .psp-crasher
 %patch3 -p0
+%patch4 -p1
 
 cp %SOURCE1 .
 %patch6 -p0
