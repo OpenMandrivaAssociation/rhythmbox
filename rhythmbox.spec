@@ -1,5 +1,5 @@
 %define version 0.12.0
-%define release %mkrel 6
+%define release %mkrel 7
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -31,6 +31,9 @@ Patch4: rhythmbox-r6238-fix-xfade-crash.patch
 Patch5: rhythmbox-r6275-fix-musicbrainz-crash.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
+#fhimpe fix failure to open output device
+#http://bugzilla.gnome.org/show_bug.cgi?id=577840
+Patch7: rhythmbox-r6273-fix-xfade-sink.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -134,6 +137,7 @@ from, and sending media to UPnP/DLNA network devices.
 %patch3 -p0
 %patch4 -p1
 %patch5 -p0
+%patch7 -p1
 
 cp %SOURCE1 .
 %patch6 -p0
