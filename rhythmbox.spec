@@ -1,5 +1,5 @@
-%define version 0.12.0
-%define release %mkrel 7
+%define version 0.12.1
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -16,24 +16,8 @@ Group:		Sound
 Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-#gw from svn, use decodebin2 instead of decodebin, fixes chained Ogg files
-Patch1: rb-0.12.0-use-decodebin2.patch
-#gw fix crashes with PSP and Nokia 770
-Patch2: fix-psp-entry-types.diff
-#gw from svn, fix crash when switching to a different CD writer
-#http://bugzilla.gnome.org/show_bug.cgi?id=365154
-Patch3: rhythmbox-r6259-fix-cd-writer-selection.patch
-#gw from svn, fix crash in xfade while viewing metadata
-#http://bugzilla.gnome.org/show_bug.cgi?id=576031
-Patch4: rhythmbox-r6238-fix-xfade-crash.patch
-#gw fix musicbrainz crash
-#http://bugzilla.gnome.org/show_bug.cgi?id=578060
-Patch5: rhythmbox-r6275-fix-musicbrainz-crash.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-#fhimpe fix failure to open output device
-#http://bugzilla.gnome.org/show_bug.cgi?id=577840
-Patch7: rhythmbox-r6273-fix-xfade-sink.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:  libgnomeui2-devel
@@ -132,12 +116,6 @@ from, and sending media to UPnP/DLNA network devices.
 
 %prep
 %setup -q
-%patch1 -p0 -b .decodebin2
-%patch2 -p1 -b .psp-crasher
-%patch3 -p0
-%patch4 -p1
-%patch5 -p0
-%patch7 -p1
 
 cp %SOURCE1 .
 %patch6 -p0
