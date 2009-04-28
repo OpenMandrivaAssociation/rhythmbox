@@ -20,17 +20,12 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
-BuildRequires:  libgnomeui2-devel
+BuildRequires:	libGConf2-devel
+BuildRequires:  gtk+2-devel
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libid3tag-devel
-%if %mdvver > 200900
-#gw this is not in main in 2009.0:
 BuildRequires:  libmusicbrainz3-devel
-BuildRequires:  brasero-devel
-%else
-BuildRequires:  libmusicbrainz-devel
-BuildRequires:  libnautilus-burn-devel > 2.11.3
-%endif
+BuildRequires:  brasero-devel >= 0.9.1
 BuildRequires:  libvorbis-devel
 BuildRequires:  libgpod-devel
 BuildRequires:  libflac-devel
@@ -47,7 +42,7 @@ BuildRequires: avahi-glib-devel
 BuildRequires:  libnotify-devel >= 0.3.2
 BuildRequires:  libgstreamer-plugins-base-devel >= %gstreamer
 BuildRequires:  x11-server-xvfb
-BuildRequires:  libtotem-plparser-devel >= 1.1.3
+BuildRequires:  libtotem-plparser-devel >= 2.26.0
 BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
