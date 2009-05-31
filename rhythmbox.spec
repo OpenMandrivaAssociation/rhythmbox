@@ -1,4 +1,4 @@
-%define version 0.12.1
+%define version 0.12.2
 %define release %mkrel 1
 
 %define		gstreamer 0.10.0
@@ -34,6 +34,7 @@ BuildRequires: libsoup-devel
 BuildRequires: libsexy-devel
 BuildRequires: libxrender-devel
 BuildRequires: gstreamer0.10-python-devel
+BuildRequires:  pygtk2.0-devel
 BuildRequires: liblirc-devel
 BuildRequires: desktop-file-utils
 BuildRequires: libcheck-devel
@@ -223,13 +224,12 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/audioscrobbler
 %_libdir/%name/plugins/cd-recorder
 %_libdir/%name/plugins/daap
-%_libdir/%name/plugins/dontreallyclose
 %_libdir/%name/plugins/fmradio
 %_libdir/%name/plugins/generic-player
+%_libdir/%name/plugins/im-status
 %_libdir/%name/plugins/ipod
 %_libdir/%name/plugins/iradio
 %_libdir/%name/plugins/jamendo
-%_libdir/%name/plugins/*sample-vala*
 %_libdir/%name/plugins/lyrics
 %_libdir/%name/plugins/magnatune
 %_libdir/%name/plugins/mmkeys
@@ -238,6 +238,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/python-console
 %_libdir/%name/plugins/rb
 %_libdir/%name/plugins/rblirc
+%_libdir/%name/plugins/status-icon
 %_libdir/%name/plugins/visualizer
 
 %files upnp
