@@ -23,6 +23,7 @@ BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libGConf2-devel
 BuildRequires:  gtk+2-devel
 BuildRequires:  libglade2.0-devel
+BuildRequires:  gnome-keyring-devel
 BuildRequires:  libid3tag-devel
 BuildRequires:  libmusicbrainz3-devel
 BuildRequires:  brasero-devel >= 0.9.1
