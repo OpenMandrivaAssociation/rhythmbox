@@ -128,10 +128,11 @@ cp %SOURCE1 .
 %define _disable_ld_no_undefined 1
 %configure2_5x \
 --enable-daap \
---enable-vala \
 --with-mdns=avahi \
 --enable-gtk-doc \
+--disable-vala \
 --with-gnome-keyring
+
 %make 
 
 %install
