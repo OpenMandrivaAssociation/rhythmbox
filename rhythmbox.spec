@@ -3,7 +3,7 @@
 %if %git
 %define release %mkrel 0.%git.1
 %else
-%define release %mkrel 1
+%define release %mkrel 2
 %endif
 
 %define		gstreamer 0.10.0
@@ -25,6 +25,9 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
+#gw from git, fix crash on final song
+#http://bugzilla.gnome.org/show_bug.cgi?id=585595
+Patch: rhythmbox-fix-bug-585595.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -127,6 +130,7 @@ from, and sending media to UPnP/DLNA network devices.
 %else
 %setup -q
 %endif
+%patch -p1
 
 cp %SOURCE1 .
 %patch6 -p0
