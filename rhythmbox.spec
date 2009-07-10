@@ -3,7 +3,7 @@
 %if %git
 %define release %mkrel 0.%git.1
 %else
-%define release %mkrel 2
+%define release %mkrel 3
 %endif
 
 %define		gstreamer 0.10.0
@@ -28,6 +28,7 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 #gw from git, fix crash on final song
 #http://bugzilla.gnome.org/show_bug.cgi?id=585595
 Patch: rhythmbox-fix-bug-585595.patch
+Patch1:rhythmbox-0.12.3-fix-lastfm-linking.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -131,6 +132,8 @@ from, and sending media to UPnP/DLNA network devices.
 %setup -q
 %endif
 %patch -p1
+%patch1 -p1
+autoreconf -fi
 
 cp %SOURCE1 .
 %patch6 -p0
