@@ -1,9 +1,9 @@
-%define version 0.12.3
+%define version 0.12.4
 %define git 0
 %if %git
 %define release %mkrel 0.%git.1
 %else
-%define release %mkrel 3
+%define release %mkrel 1
 %endif
 
 %define		gstreamer 0.10.0
@@ -25,10 +25,6 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-#gw from git, fix crash on final song
-#http://bugzilla.gnome.org/show_bug.cgi?id=585595
-Patch: rhythmbox-fix-bug-585595.patch
-Patch1:rhythmbox-0.12.3-fix-lastfm-linking.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -62,6 +58,9 @@ BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  xulrunner-devel
+%if %mdvver >= 201000
+BuildRequires:  libgudev-devel
+%endif
 BuildRequires:  gtk-doc
 BuildRequires:	gnome-common
 BuildRequires:	intltool
@@ -131,9 +130,6 @@ from, and sending media to UPnP/DLNA network devices.
 %else
 %setup -q
 %endif
-%patch -p1
-%patch1 -p1
-autoreconf -fi
 
 cp %SOURCE1 .
 %patch6 -p0
@@ -141,8 +137,6 @@ cp %SOURCE1 .
 %build
 #gw rb.c
 %define Werror_cflags %nil
-#gw else librhythmbox-core does not build
-%define _disable_ld_no_undefined 1
 %configure2_5x \
 --enable-daap \
 --with-mdns=avahi \
@@ -196,13 +190,8 @@ for f in $helpdir/C/figures/*.png; do
 done
 
 %check
-#gw I couldn't make the tests run in the iurt chroot
-XDISPLAY=$(i=1; while [ -f /tmp/.X$i-lock ]; do i=$(($i+1)); done; echo $i)
-%{_bindir}/Xvfb :$XDISPLAY &
-export DISPLAY=:$XDISPLAY
 # gw one test fails without a running dbus
-#make check
-kill $(cat /tmp/.X$XDISPLAY-lock) || :
+#xvfb-run make check
 
 %clean
 rm -rf %{buildroot}
