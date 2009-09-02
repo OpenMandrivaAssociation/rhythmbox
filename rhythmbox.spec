@@ -61,6 +61,7 @@ BuildRequires:  libvala-devel
 BuildRequires:  xulrunner-devel
 %if %mdvver >= 201000
 BuildRequires:  libgudev-devel
+Suggests:	media-player-info
 %endif
 BuildRequires:  gtk-doc
 BuildRequires:	gnome-common
@@ -79,7 +80,6 @@ Requires: gnome-python
 Requires: gnome-python-gconf
 Requires: gnome-python-gnomevfs
 #Suggests:	%gstname-faad
-Suggests:	media-player-info
 Provides:	net-rhythmbox
 Obsoletes:	net-rhythmbox
 Provides:	rhythmbox0.7
