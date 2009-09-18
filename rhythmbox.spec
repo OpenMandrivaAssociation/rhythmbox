@@ -1,7 +1,7 @@
-%define version 0.12.4
+%define version 0.12.5
 %define git 0
 %if %git
-%define release %mkrel 0.%git.1
+%define release %mkrel 1
 %else
 %define release %mkrel 2
 %endif
@@ -27,7 +27,6 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-Patch7:	rhythmbox-0.12.4-mpi-path.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libGConf2-devel
@@ -135,7 +134,6 @@ from, and sending media to UPnP/DLNA network devices.
 
 cp %SOURCE1 .
 %patch6 -p0
-%patch7 -p1
 
 %build
 #gw rb.c
