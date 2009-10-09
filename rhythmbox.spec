@@ -3,7 +3,7 @@
 %if %git
 %define release %mkrel 1
 %else
-%define release %mkrel 2
+%define release %mkrel 3
 %endif
 
 %define		gstreamer 0.10.0
@@ -27,6 +27,7 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
+Patch7: rhythmbox-0.12.5-daap-fix-linkage.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libGConf2-devel
@@ -134,10 +135,12 @@ from, and sending media to UPnP/DLNA network devices.
 
 cp %SOURCE1 .
 %patch6 -p0
+%patch7 -p1
 
 %build
 #gw rb.c
 %define Werror_cflags %nil
+autoreconf -fi
 %configure2_5x \
 --enable-daap \
 --with-mdns=avahi \
