@@ -3,7 +3,7 @@
 %if %git
 %define release %mkrel 1
 %else
-%define release %mkrel 3
+%define release %mkrel 4
 %endif
 
 %define		gstreamer 0.10.0
@@ -25,6 +25,23 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
+# gw avoid using HEAD to get podcast mime types
+# https://bugzilla.gnome.org/show_bug.cgi?id=596615
+Patch0: rb-no-HEAD-for-podcasts.patch
+# gw fix crash in the context pane
+# https://bugzilla.gnome.org/show_bug.cgi?id=602140
+Patch1: rb-webkit-crasher.patch
+# gw fix crash when musicbrainz has no data for a CD
+# https://bugzilla.redhat.com/show_bug.cgi?id=546188
+Patch2: 0001-Fix-crasher-when-MusicBrainz-can-t-read-a-disc.patch
+# gw make track changes more robust
+# https://bugzilla.gnome.org/show_bug.cgi?id=601524
+# https://bugzilla.gnome.org/show_bug.cgi?id=602957
+Patch3: rb-playbin2-track-changes.patch
+#gw build with new totem-pl-parser API
+# https://bugzilla.gnome.org/show_bug.cgi?id=605313
+Patch4: 0001-Use-totem_pl_parser_save-for-playlist-saving.patch
+
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -78,6 +95,9 @@ Requires: pygtk2.0-libglade
 Requires: gnome-python
 Requires: gnome-python-gconf
 Requires: gnome-python-gnomevfs
+#gw context pane:
+Requires:	python-webkitgtk
+Requires:	python-beaker
 #Suggests:	%gstname-faad
 Provides:	net-rhythmbox
 Obsoletes:	net-rhythmbox
@@ -131,6 +151,11 @@ from, and sending media to UPnP/DLNA network devices.
 %else
 %setup -q
 %endif
+%patch0 -p1 -b .http-head
+%patch1 -p1 -b .webkit
+%patch2 -p1 -b .mb-crasher
+%patch3 -p1 -b .track-change-hang
+%patch4 -p1 -b .plparser 
 
 cp %SOURCE1 .
 %patch6 -p0
