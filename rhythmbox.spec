@@ -1,9 +1,9 @@
 %define version 0.12.6
 %define git 0
 %if %git
-%define release %mkrel 2
+%define release %mkrel 1
 %else
-%define release %mkrel 4
+%define release %mkrel 5
 %endif
 
 %define		gstreamer 0.10.0
