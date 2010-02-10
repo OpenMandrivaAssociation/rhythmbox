@@ -1,7 +1,7 @@
 %define version 0.12.6
 %define git 0
 %if %git
-%define release %mkrel 1
+%define release %mkrel 2
 %else
 %define release %mkrel 4
 %endif
@@ -98,6 +98,7 @@ Requires: gnome-python-gnomevfs
 #gw context pane:
 Requires:	python-webkitgtk
 Requires:	python-beaker
+Requires:	python-mako
 #Suggests:	%gstname-faad
 Provides:	net-rhythmbox
 Obsoletes:	net-rhythmbox
