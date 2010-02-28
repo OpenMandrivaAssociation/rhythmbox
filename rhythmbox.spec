@@ -1,9 +1,9 @@
-%define version 0.12.6
+%define version 0.12.7
 %define git 0
 %if %git
 %define release %mkrel 1
 %else
-%define release %mkrel 5
+%define release %mkrel 1
 %endif
 
 %define		gstreamer 0.10.0
@@ -28,26 +28,13 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 # gw avoid using HEAD to get podcast mime types
 # https://bugzilla.gnome.org/show_bug.cgi?id=596615
 Patch0: rb-no-HEAD-for-podcasts.patch
-# gw fix crash in the context pane
-# https://bugzilla.gnome.org/show_bug.cgi?id=602140
-Patch1: rb-webkit-crasher.patch
-# gw fix crash when musicbrainz has no data for a CD
-# https://bugzilla.redhat.com/show_bug.cgi?id=546188
-Patch2: 0001-Fix-crasher-when-MusicBrainz-can-t-read-a-disc.patch
-# gw make track changes more robust
-# https://bugzilla.gnome.org/show_bug.cgi?id=601524
-# https://bugzilla.gnome.org/show_bug.cgi?id=602957
-Patch3: rb-playbin2-track-changes.patch
-#gw build with new totem-pl-parser API
-# https://bugzilla.gnome.org/show_bug.cgi?id=605313
-Patch4: 0001-Use-totem_pl_parser_save-for-playlist-saving.patch
 
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	libGConf2-devel
-BuildRequires:  gtk+2-devel
+BuildRequires:  gtk+2-devel >= 2.16
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libgnome-keyring-devel
 BuildRequires:  libid3tag-devel
@@ -153,10 +140,6 @@ from, and sending media to UPnP/DLNA network devices.
 %setup -q
 %endif
 %patch0 -p1 -b .http-head
-%patch1 -p1 -b .webkit
-%patch2 -p1 -b .mb-crasher
-%patch3 -p1 -b .track-change-hang
-%patch4 -p1 -b .plparser 
 
 cp %SOURCE1 .
 %patch6 -p0
@@ -248,6 +231,7 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/gconf/schemas/rhythmbox.schemas
 %{_bindir}/rhythmbox
 %{_bindir}/rhythmbox-client
+%_mandir/man1/*.1*
 %{_datadir}/applications/rhythmbox.desktop
 %{_datadir}/icons/hicolor/*/apps/rhythmbox*
 %{_datadir}/rhythmbox/
@@ -278,6 +262,8 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/python-console
 %_libdir/%name/plugins/rb
 %_libdir/%name/plugins/rblirc
+%_libdir/%name/plugins/replaygain
+%_libdir/%name/plugins/sendto
 %_libdir/%name/plugins/status-icon
 %_libdir/%name/plugins/visualizer
 
