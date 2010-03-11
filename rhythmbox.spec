@@ -38,7 +38,7 @@ BuildRequires:  gtk+2-devel >= 2.16
 BuildRequires:  libglade2.0-devel
 BuildRequires:  libgnome-keyring-devel
 BuildRequires:  libid3tag-devel
-BuildRequires:  libmusicbrainz-devel
+BuildRequires:  libmusicbrainz3-devel
 BuildRequires:  brasero-devel >= 0.9.1
 BuildRequires:  libvorbis-devel
 BuildRequires:  libgpod-devel
