@@ -1,4 +1,4 @@
-%define version 0.12.7
+%define version 0.12.8
 %define git 0
 %if %git
 %define release %mkrel 1
@@ -234,6 +234,7 @@ rm -rf %{buildroot}
 %_mandir/man1/*.1*
 %{_datadir}/applications/rhythmbox.desktop
 %{_datadir}/icons/hicolor/*/apps/rhythmbox*
+%{_datadir}/icons/hicolor/*/places/music-library.*
 %{_datadir}/rhythmbox/
 %dir %_datadir/omf/rhythmbox/
 %_datadir/omf/rhythmbox/rhythmbox-C.omf
