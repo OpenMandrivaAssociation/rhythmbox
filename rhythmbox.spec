@@ -127,6 +127,7 @@ Group: Sound
 Summary: Rhythmbox UPNP plugin
 Requires: %name = %version-%release
 Requires: python-coherence
+Requires: python-louie
 
 %description upnp
 This plugin adds UPNP support to Rhythmbox. It allows playing media
