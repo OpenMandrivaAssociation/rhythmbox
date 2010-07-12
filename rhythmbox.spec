@@ -1,4 +1,4 @@
-%define version 0.12.8
+%define version 0.13.0
 %define git 0
 %if %git
 %define release %mkrel 1
@@ -25,9 +25,6 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-# gw avoid using HEAD to get podcast mime types
-# https://bugzilla.gnome.org/show_bug.cgi?id=596615
-Patch0: rb-no-HEAD-for-podcasts.patch
 
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
@@ -62,6 +59,9 @@ BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  xulrunner-devel
+#gw: not packaged yet
+#https://qa.mandriva.com/show_bug.cgi?id=59991
+#BuildRequires: libdmapsharing-devel
 %if %mdvver >= 201000
 BuildRequires:  libgudev-devel
 Suggests:	media-player-info
@@ -133,6 +133,13 @@ Requires: python-louie
 This plugin adds UPNP support to Rhythmbox. It allows playing media
 from, and sending media to UPnP/DLNA network devices.
 
+%package devel
+Group: Development/C
+Summary: Rhythmbox plugin development files
+
+%description devel
+Install this if you want to build Rhythmbox plugins.
+
 %prep
 %if %git
 %setup -q -n %name
@@ -140,7 +147,6 @@ from, and sending media to UPnP/DLNA network devices.
 %else
 %setup -q
 %endif
-%patch0 -p1 -b .http-head
 
 cp %SOURCE1 .
 %patch6 -p0
@@ -149,11 +155,11 @@ cp %SOURCE1 .
 #gw rb.c
 %define Werror_cflags %nil
 %configure2_5x \
---enable-daap \
 --with-mdns=avahi \
 --enable-gtk-doc \
---disable-vala \
+--enable-vala \
 --with-gnome-keyring
+#--enable-daap \
 
 %make 
 
@@ -249,7 +255,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/audioscrobbler
 %_libdir/%name/plugins/cd-recorder
 %_libdir/%name/plugins/context
-%_libdir/%name/plugins/daap
+#%_libdir/%name/plugins/daap
 %_libdir/%name/plugins/fmradio
 %_libdir/%name/plugins/generic-player
 %_libdir/%name/plugins/im-status
@@ -265,6 +271,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/rb
 %_libdir/%name/plugins/rblirc
 %_libdir/%name/plugins/replaygain
+%_libdir/%name/plugins/sample-vala
 %_libdir/%name/plugins/sendto
 %_libdir/%name/plugins/status-icon
 %_libdir/%name/plugins/visualizer
@@ -280,3 +287,8 @@ rm -rf %{buildroot}
 %files mozilla
 %defattr(-, root, root)
 %_libdir/mozilla/plugins/librhythmbox-itms-detection-plugin.so
+
+%files devel
+%defattr(-, root, root)
+%_includedir/%name
+%_libdir/pkgconfig/%name.pc
