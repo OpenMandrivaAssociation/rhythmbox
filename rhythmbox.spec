@@ -265,6 +265,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/lyrics
 %_libdir/%name/plugins/magnatune
 %_libdir/%name/plugins/mmkeys
+%_libdir/%name/plugins/mpris
 %_libdir/%name/plugins/mtpdevice
 %_libdir/%name/plugins/power-manager
 %_libdir/%name/plugins/python-console
