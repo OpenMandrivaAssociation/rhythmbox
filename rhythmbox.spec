@@ -3,7 +3,7 @@
 %if %git
 %define release %mkrel 1
 %else
-%define release %mkrel 2
+%define release %mkrel 3
 %endif
 
 %define		gstreamer 0.10.0
@@ -27,6 +27,7 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 Patch0: rhythmbox-0.13.0-gdbus.patch
 Patch1: rhythmbox-0.13.0-libdmapsharing-2.0.patch
+Patch2: rhythmbox-0.13.0-vala-0.10.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -60,9 +61,6 @@ BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  xulrunner-devel
-#gw: not packaged yet
-#https://qa.mandriva.com/show_bug.cgi?id=59991
-#BuildRequires: libdmapsharing-devel
 %if %mdvver >= 201000
 BuildRequires:  libgudev-devel
 Suggests:	media-player-info
@@ -152,6 +150,9 @@ Install this if you want to build Rhythmbox plugins.
 
 %patch0 -p1
 %patch1 -p1
+%if %mdvver >= 201100
+%patch2 -p1
+%endif
 cp %SOURCE1 .
 %patch6 -p0
 ./autogen.sh -V
@@ -162,7 +163,7 @@ cp %SOURCE1 .
 %configure2_5x \
 --with-mdns=avahi \
 --enable-gtk-doc \
---disable-vala \
+--enable-vala \
 --with-gnome-keyring
 
 %make 
@@ -276,6 +277,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/rb
 %_libdir/%name/plugins/rblirc
 %_libdir/%name/plugins/replaygain
+%_libdir/%name/plugins/sample-vala
 %_libdir/%name/plugins/sendto
 %_libdir/%name/plugins/status-icon
 %_libdir/%name/plugins/visualizer
