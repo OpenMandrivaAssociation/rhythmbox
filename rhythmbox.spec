@@ -26,6 +26,7 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 Patch0: rhythmbox-0.13.0-gdbus.patch
+Patch1: rhythmbox-0.13.0-libdmapsharing-2.0.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -70,6 +71,7 @@ BuildRequires:  gtk-doc
 BuildRequires:	gnome-common
 BuildRequires:	intltool
 BuildRequires:	gnome-doc-utils
+BuildRequires:	libdmapsharing-devel
 Requires: %libname >= %version-%release
 Requires: %gstname-plugins-base
 Requires: %gstname-plugins-good
@@ -149,8 +151,10 @@ Install this if you want to build Rhythmbox plugins.
 %endif
 
 %patch0 -p1
+%patch1 -p1
 cp %SOURCE1 .
 %patch6 -p0
+./autogen.sh -V
 
 %build
 #gw rb.c
@@ -255,7 +259,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/audioscrobbler
 %_libdir/%name/plugins/cd-recorder
 %_libdir/%name/plugins/context
-#%_libdir/%name/plugins/daap
+%_libdir/%name/plugins/daap
 %_libdir/%name/plugins/fmradio
 %_libdir/%name/plugins/generic-player
 %_libdir/%name/plugins/im-status
