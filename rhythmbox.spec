@@ -25,7 +25,7 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-
+Patch0: rhythmbox-0.13.0-gdbus.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -148,6 +148,7 @@ Install this if you want to build Rhythmbox plugins.
 %setup -q
 %endif
 
+%patch0 -p1
 cp %SOURCE1 .
 %patch6 -p0
 
@@ -157,9 +158,8 @@ cp %SOURCE1 .
 %configure2_5x \
 --with-mdns=avahi \
 --enable-gtk-doc \
---enable-vala \
+--disable-vala \
 --with-gnome-keyring
-#--enable-daap \
 
 %make 
 
@@ -271,7 +271,6 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/rb
 %_libdir/%name/plugins/rblirc
 %_libdir/%name/plugins/replaygain
-%_libdir/%name/plugins/sample-vala
 %_libdir/%name/plugins/sendto
 %_libdir/%name/plugins/status-icon
 %_libdir/%name/plugins/visualizer
