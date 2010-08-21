@@ -3,7 +3,7 @@
 %if %git
 %define release %mkrel 1
 %else
-%define release %mkrel 1
+%define release %mkrel 2
 %endif
 
 %define		gstreamer 0.10.0
