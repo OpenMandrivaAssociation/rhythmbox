@@ -1,15 +1,15 @@
-%define version 0.13.0
+%define version 0.13.1
 %define git 0
 %if %git
 %define release %mkrel 1
 %else
-%define release %mkrel 3
+%define release %mkrel 1
 %endif
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
 
-%define major 0
+%define major 1
 %define libname %mklibname rhythmbox %major
 
 Name:		rhythmbox
@@ -25,8 +25,6 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-Patch0: rhythmbox-0.13.0-gdbus.patch
-Patch1: rhythmbox-0.13.0-libdmapsharing-2.0.patch
 Patch2: rhythmbox-0.13.0-vala-0.10.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
@@ -148,8 +146,6 @@ Install this if you want to build Rhythmbox plugins.
 %setup -q
 %endif
 
-%patch0 -p1
-%patch1 -p1
 %if %mdvver >= 201100
 %patch2 -p1
 %endif
@@ -245,6 +241,7 @@ rm -rf %{buildroot}
 %{_bindir}/rhythmbox-client
 %_mandir/man1/*.1*
 %{_datadir}/applications/rhythmbox.desktop
+%{_datadir}/applications/rhythmbox-device.desktop
 %{_datadir}/icons/hicolor/*/apps/rhythmbox*
 %{_datadir}/icons/hicolor/*/places/music-library.*
 %{_datadir}/rhythmbox/
@@ -261,6 +258,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/cd-recorder
 %_libdir/%name/plugins/context
 %_libdir/%name/plugins/daap
+%_libdir/%name/plugins/dbus-media-server
 %_libdir/%name/plugins/fmradio
 %_libdir/%name/plugins/generic-player
 %_libdir/%name/plugins/im-status
