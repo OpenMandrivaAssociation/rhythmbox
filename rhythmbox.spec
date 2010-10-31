@@ -1,6 +1,6 @@
-%define version 0.13.1
+%define version 0.13.2
 %define git 0
-%define release %mkrel 2
+%define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
@@ -21,7 +21,6 @@ Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-Patch2: rhythmbox-0.13.0-vala-0.10.patch
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -63,7 +62,7 @@ BuildRequires:  gtk-doc
 BuildRequires:	gnome-common
 BuildRequires:	intltool
 BuildRequires:	gnome-doc-utils
-BuildRequires:	libdmapsharing-devel
+BuildRequires:	libdmapsharing-devel >= 2.1.6
 Requires: %libname >= %version-%release
 Requires: %gstname-plugins-base
 Requires: %gstname-plugins-good
@@ -142,12 +141,9 @@ Install this if you want to build Rhythmbox plugins.
 %setup -q
 %endif
 
-%if %mdvver >= 201100
-%patch2 -p1
-%endif
 cp %SOURCE1 .
 %patch6 -p0
-./autogen.sh -V
+#./autogen.sh -V
 
 %build
 #gw rb.c
@@ -270,6 +266,7 @@ rm -rf %{buildroot}
 %_libdir/%name/plugins/python-console
 %_libdir/%name/plugins/rb
 %_libdir/%name/plugins/rblirc
+%_libdir/%name/plugins/rbzeitgeist
 %_libdir/%name/plugins/replaygain
 %_libdir/%name/plugins/sample-vala
 %_libdir/%name/plugins/sendto
