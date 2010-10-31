@@ -54,6 +54,7 @@ BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
 BuildRequires:  xulrunner-devel
+BuildRequires:  libjson-glib-devel
 %if %mdvver >= 201000
 BuildRequires:  libgudev-devel
 Suggests:	media-player-info
