@@ -1,11 +1,11 @@
-%define version 0.13.2
+%define version 0.13.3
 %define git 0
 %define release %mkrel 1
 
 %define		gstreamer 0.10.0
 %define		gstname gstreamer0.10
 
-%define major 1
+%define major 3
 %define libname %mklibname rhythmbox %major
 
 Name:		rhythmbox
