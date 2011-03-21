@@ -49,7 +49,7 @@ BuildRequires: avahi-glib-devel
 BuildRequires:  libnotify-devel >= 0.3.2
 BuildRequires:  libgstreamer-plugins-base-devel >= %gstreamer
 BuildRequires:  x11-server-xvfb
-BuildRequires:  libtotem-plparser-devel >= 2.26.0
+BuildRequires:  libtotem-plparser-devel >= 2.32.1
 BuildRequires:  libmtp-devel
 BuildRequires:  gnome-media libcddb-slave2-devel
 BuildRequires:  libvala-devel
