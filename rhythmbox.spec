@@ -169,7 +169,7 @@ done
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="Audio;Player" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
+  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 
 rm -f  %buildroot%_libdir/%name/plugins/*/*.a \
@@ -185,7 +185,7 @@ find %buildroot -name \*.la |xargs chmod 644
 cp -a rhythmbox-iradio-initial.pls %{buildroot}%{_libdir}/rhythmbox/plugins/iradio/iradio-initial.pls
 
 # save space by linking identical images in translated docs
-helpdir=$RPM_BUILD_ROOT%{_datadir}/gnome/help/%{name}
+helpdir=%{buildroot}%{_datadir}/gnome/help/%{name}
 for f in $helpdir/C/figures/*.png; do
   b="$(basename $f)"
   for d in $helpdir/*; do
