@@ -1,115 +1,94 @@
-%define version 0.13.3
-%define git 0
-%define release %mkrel 5
+#gw rb.c
+%define Werror_cflags %nil
 
-%define		gstreamer 0.10.0
-%define		gstname gstreamer0.10
+%define	gstname gstreamer0.10
 
 %define major 3
-%define libname %mklibname rhythmbox %major
+%define libname %mklibname rhythmbox %{major}
 
 Name:		rhythmbox
 Summary:	Music Management Application 
-Version:	%version
-Release:	%release
+Version:	2.96
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
-%if %git
-Source0:       %{name}-%{git}.tar.bz2
-%else
-Source:		http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.bz2
+URL:		http://www.gnome.org/projects/rhythmbox/
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.xz
 %endif
 # gw take default Internet radio station listing from Fedora:
 Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
-URL:		http://www.gnome.org/projects/rhythmbox/
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-root
-BuildRequires:	libGConf2-devel
-BuildRequires:  gtk+2-devel >= 2.16
-BuildRequires:  libglade2.0-devel
-BuildRequires:  libgnome-keyring-devel
-BuildRequires:  libid3tag-devel
-BuildRequires:  libmusicbrainz3-devel
-BuildRequires:  brasero-devel >= 0.9.1
-BuildRequires:  libvorbis-devel
-BuildRequires:  libgpod-devel
-BuildRequires:  libflac-devel
-BuildRequires:  scrollkeeper
-BuildRequires: libsoup-devel
-BuildRequires: libsexy-devel
-BuildRequires: libxrender-devel
-BuildRequires: gstreamer0.10-python-devel
-BuildRequires:  pygtk2.0-devel
-BuildRequires: liblirc-devel
-BuildRequires: desktop-file-utils
-BuildRequires: libcheck-devel
-BuildRequires: avahi-client-devel
-BuildRequires: avahi-glib-devel
-BuildRequires:  libnotify-devel >= 0.3.2
-BuildRequires:  libgstreamer-plugins-base-devel >= %gstreamer
-BuildRequires:  x11-server-xvfb
-BuildRequires:  libtotem-plparser-devel >= 2.32.1
-BuildRequires:  libmtp-devel
-BuildRequires:  gnome-media libcddb-slave2-devel
-BuildRequires:  libvala-devel
-BuildRequires:  xulrunner-devel
-BuildRequires:  libjson-glib-devel
-%if %mdvver >= 201000
-BuildRequires:  libgudev-devel
-Suggests:	media-player-info
-%endif
-BuildRequires:  gtk-doc
-BuildRequires:	gnome-common
-BuildRequires:	intltool
+
 BuildRequires:	gnome-doc-utils
-BuildRequires:	libdmapsharing-devel >= 2.1.6
-Requires: %libname >= %version-%release
-Requires: %gstname-plugins-base
-Requires: %gstname-plugins-good
-Suggests: %gstname-plugins-ugly
-Requires:	%gstname-gnomevfs >= %gstreamer
-Requires:	%gstname-flac >= %gstreamer
+BuildRequires:	intltool
+BuildRequires:	vala
+BuildRequires:	libdmapsharing-devel
+BuildRequires:	lirc-devel
+BuildRequires:	pkgconfig(avahi-glib)
+BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
+BuildRequires:	pkgconfig(clutter-gst-1.0) >= 1.0
+BuildRequires:	pkgconfig(clutter-gtk-1.0) >= 1.0
+BuildRequires:	pkgconfig(clutter-x11-1.0) >= 1.2
+BuildRequires:	pkgconfig(gconf-2.0)
+BuildRequires:	pkgconfig(gnome-keyring-1)
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(grilo-0.1) >= 0.1.17
+BuildRequires:	pkgconfig(gstreamer-0.10) >= 0.10.32
+BuildRequires:	pkgconfig(gstreamer-interfaces-0.10) >= 0.10.32
+BuildRequires:	pkgconfig(gstreamer-pbutils-0.10) >= 0.10.32
+BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10) >= 0.10.32
+BuildRequires:	pkgconfig(gtk+-3.0) >= 3.2.0
+BuildRequires:	pkgconfig(gudev-1.0)
+BuildRequires:	pkgconfig(ice)
+BuildRequires:	pkgconfig(json-glib-1.0)
+BuildRequires:	pkgconfig(libbrasero-media3)
+BuildRequires:	pkgconfig(libgpod-1.0)
+BuildRequires:	pkgconfig(libmtp)
+BuildRequires:	pkgconfig(libmusicbrainz3)
+BuildRequires:	pkgconfig(libnotify)
+BuildRequires:	pkgconfig(libpeas-1.0) >= 0.7.3
+BuildRequires:	pkgconfig(libpeas-gtk-1.0) >= 0.7.3
+BuildRequires:	pkgconfig(libsoup-2.4)
+BuildRequires:	pkgconfig(libsoup-gnome-2.4)
+BuildRequires:	pkgconfig(mx-1.0) >= 1.0.1
+BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
+BuildRequires:	pkgconfig(sm)
+BuildRequires:	pkgconfig(tdb)
+BuildRequires:	pkgconfig(totem-plparser)
+BuildRequires:	pkgconfig(webkitgtk-3.0)
+
+# For python plugins
+Requires:	python-gobject
+Suggests:	media-player-info
+
 Requires:	dbus-x11
-Requires: gstreamer0.10-python
-Requires: pygtk2.0-libglade
-Requires: gnome-python
-Requires: gnome-python-gconf
-Requires: gnome-python-gnomevfs
-#gw context pane:
-Requires:	python-webkitgtk
-Requires:	python-beaker
-Requires:	python-mako
-#Suggests:	%gstname-faad
-Provides:	net-rhythmbox
-Obsoletes:	net-rhythmbox
-Provides:	rhythmbox0.7
-Obsoletes:	rhythmbox0.7
-Provides:	rhythmbox-scrobbler
-Obsoletes:	rhythmbox-scrobbler
-Requires(post):		scrollkeeper
-Requires(postun):	scrollkeeper
-Requires(post):		GConf2 >= 2.3.3
-Requires(preun):	GConf2 >= 2.3.3
+Requires:	%{gstname}-plugins-base
+Requires:	%{gstname}-plugins-good
+Suggests:	%{gstname}-plugins-ugly
+Requires:	%{gstname}-gnomevfs
+Requires:	%{gstname}-flac
+#Suggests 	%{gstname}-faad
+Requires(post,postun):	GConf2
 
 %description
 Music Management application with support for ripping audio-cd's,
 playback of Ogg Vorbis and Mp3 and burning of CD-Rs.
 
-%package -n %libname
+%package -n %{libname}
 Group:System/Libraries
-Summary: Shared library part of %name
+Summary: Shared library part of %{name}
 
-%description -n %libname
+%description -n %{libname}
 Music Management application with support for ripping audio-cd's,
 playback of Ogg Vorbis and Mp3 and burning of CD-Rs.
 
-This is the shared library part of %name.
+This is the shared library part of %{name}.
 
 %package mozilla
 Group: Sound
 Summary: Rhythmbox integration for Mozilla Firefox
-Requires: %name = %version
+Requires: %{name} = %{version}
 
 %description mozilla
 This plugin integates Rhythmbox with Mozilla and compatible
@@ -119,7 +98,7 @@ Music Store.
 %package upnp
 Group: Sound
 Summary: Rhythmbox UPNP plugin
-Requires: %name = %version-%release
+Requires: %{name} = %{version}-%{release}
 Requires: python-coherence
 Requires: python-louie
 
@@ -130,56 +109,37 @@ from, and sending media to UPnP/DLNA network devices.
 %package devel
 Group: Development/C
 Summary: Rhythmbox plugin development files
+Requires: %{libname} = %{version}-%{release}
 
 %description devel
 Install this if you want to build Rhythmbox plugins.
 
 %prep
-%if %git
-%setup -q -n %name
-./autogen.sh -V
-%else
 %setup -q
-%endif
-
 cp %SOURCE1 .
 %patch6 -p0
-#./autogen.sh -V
 
 %build
-#gw rb.c
-%define Werror_cflags %nil
 %configure2_5x \
---with-mdns=avahi \
---enable-gtk-doc \
---enable-vala \
---with-gnome-keyring
+	--disable-static \
+	--disable-scrollkeeper \
+	--with-mdns=avahi \
+	--enable-gtk-doc \
+	--enable-vala \
+	--with-gnome-keyring
 
 %make 
 
 %install
-rm -rf %{buildroot}
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std _ENABLE_SK=false
-
-%find_lang %name --with-gnome
-for omf in %buildroot%_datadir/omf/*/*{-??.omf,-??_??.omf};do
-echo "%lang($(basename $omf|sed -e s/.*-// -e s/.omf//)) $(echo $omf|sed s!%buildroot!!)" >> %name.lang
-done
+%makeinstall_std _ENABLE_SK=false
+find %{buildroot} -type f -name "*.la" -delete -print
+%find_lang %{name} --with-gnome
 
 desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --add-category="Audio;Player" \
-  --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
-
-
-rm -f  %buildroot%_libdir/%name/plugins/*/*.a \
-   %buildroot%_libdir/%name/plugins/*.a \
-   %buildroot%_libdir/*.a \
-   %buildroot%_libdir/mozilla/plugins/lib*a
-#gw remove it until there's a devel package
-rm -f  %buildroot%_libdir/librhythmbox-core.{so,la}
-
-find %buildroot -name \*.la |xargs chmod 644
+	--remove-category="Application" \
+	--add-category="Audio;Player" \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_datadir}/applications/*
 
 # Replace the default radios with Ogg Radios
 cp -a rhythmbox-iradio-initial.pls %{buildroot}%{_libdir}/rhythmbox/plugins/iradio/iradio-initial.pls
@@ -204,89 +164,61 @@ done
 # gw one test fails without a running dbus
 #xvfb-run make check
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%post_install_gconf_schemas rhythmbox
-%update_scrollkeeper
-%update_icon_cache hicolor
-
-%postun
-%{clean_menus}
-%clean_scrollkeeper
-%clean_icon_cache hicolor
-
-%post -n %libname -p /sbin/ldconfig
-%postun -n %libname -p /sbin/ldconfig
-%endif
-
-%preun
-%preun_uninstall_gconf_schemas rhythmbox
-
-%files -f %name.lang
-%defattr(-, root, root)
+%files -f %{name}.lang
 %doc AUTHORS COPYING README NEWS
-%config(noreplace) %{_sysconfdir}/gconf/schemas/rhythmbox.schemas
 %{_bindir}/rhythmbox
 %{_bindir}/rhythmbox-client
-%_mandir/man1/*.1*
 %{_datadir}/applications/rhythmbox.desktop
 %{_datadir}/applications/rhythmbox-device.desktop
 %{_datadir}/icons/hicolor/*/apps/rhythmbox*
 %{_datadir}/icons/hicolor/*/places/music-library.*
 %{_datadir}/rhythmbox/
-%dir %_datadir/omf/rhythmbox/
-%_datadir/omf/rhythmbox/rhythmbox-C.omf
-%_datadir/gtk-doc/html/%name
-%_datadir/dbus-1/services/org.gnome.Rhythmbox.service
-%_libexecdir/rhythmbox-metadata
-%dir %_libdir/%name/
-%dir %_libdir/%name/plugins
-%_libdir/%name/plugins/artdisplay
-%_libdir/%name/plugins/audiocd
-%_libdir/%name/plugins/audioscrobbler
-%_libdir/%name/plugins/cd-recorder
-%_libdir/%name/plugins/context
-%_libdir/%name/plugins/daap
-%_libdir/%name/plugins/dbus-media-server
-%_libdir/%name/plugins/fmradio
-%_libdir/%name/plugins/generic-player
-%_libdir/%name/plugins/im-status
-%_libdir/%name/plugins/ipod
-%_libdir/%name/plugins/iradio
-%_libdir/%name/plugins/jamendo
-%_libdir/%name/plugins/lyrics
-%_libdir/%name/plugins/magnatune
-%_libdir/%name/plugins/mmkeys
-%_libdir/%name/plugins/mpris
-%_libdir/%name/plugins/mtpdevice
-%_libdir/%name/plugins/power-manager
-%_libdir/%name/plugins/python-console
-%_libdir/%name/plugins/rb
-%_libdir/%name/plugins/rblirc
-%_libdir/%name/plugins/rbzeitgeist
-%_libdir/%name/plugins/replaygain
-%_libdir/%name/plugins/sample-vala
-%_libdir/%name/plugins/sendto
-%_libdir/%name/plugins/status-icon
-%_libdir/%name/plugins/visualizer
+%{_datadir}/gtk-doc/html/%{name}
+%{_datadir}/dbus-1/services/org.gnome.Rhythmbox.service
+%{_libexecdir}/rhythmbox-metadata
+%dir %{_libdir}/%{name}/
+%dir %{_libdir}/%{name}/plugins
+%{_libdir}/%{name}/plugins/artdisplay
+%{_libdir}/%{name}/plugins/audiocd
+%{_libdir}/%{name}/plugins/audioscrobbler
+%{_libdir}/%{name}/plugins/cd-recorder
+%{_libdir}/%{name}/plugins/context
+%{_libdir}/%{name}/plugins/daap
+%{_libdir}/%{name}/plugins/dbus-media-server
+%{_libdir}/%{name}/plugins/fmradio
+%{_libdir}/%{name}/plugins/generic-player
+%{_libdir}/%{name}/plugins/im-status
+%{_libdir}/%{name}/plugins/ipod
+%{_libdir}/%{name}/plugins/iradio
+%{_libdir}/%{name}/plugins/jamendo
+%{_libdir}/%{name}/plugins/lyrics
+%{_libdir}/%{name}/plugins/magnatune
+%{_libdir}/%{name}/plugins/mmkeys
+%{_libdir}/%{name}/plugins/mpris
+%{_libdir}/%{name}/plugins/mtpdevice
+%{_libdir}/%{name}/plugins/power-manager
+%{_libdir}/%{name}/plugins/python-console
+%{_libdir}/%{name}/plugins/rb
+%{_libdir}/%{name}/plugins/rblirc
+%{_libdir}/%{name}/plugins/rbzeitgeist
+%{_libdir}/%{name}/plugins/replaygain
+%{_libdir}/%{name}/plugins/sample-vala
+%{_libdir}/%{name}/plugins/sendto
+%{_libdir}/%{name}/plugins/status-icon
+%{_libdir}/%{name}/plugins/visualizer
+%{_mandir}/man1/*.1*
 
 %files upnp
-%defattr(-, root, root)
-%_libdir/%name/plugins/upnp_coherence
+%{_libdir}/%{name}/plugins/upnp_coherence
 
-%files -n %libname
-%defattr(-, root, root)
-%_libdir/librhythmbox-core.so.%{major}*
+%files -n %{libname}
+%{_libdir}/librhythmbox-core.so.%{major}*
 
 %files mozilla
-%defattr(-, root, root)
-%_libdir/mozilla/plugins/librhythmbox-itms-detection-plugin.so
+%{_libdir}/mozilla/plugins/librhythmbox-itms-detection-plugin.so
 
 %files devel
-%defattr(-, root, root)
-%_includedir/%name
-%_libdir/pkgconfig/%name.pc
+%{_includedir}/%{name}
+%{_libdir}/lib*.so
+%{_libdir}/pkgconfig/%{name}.pc
+
