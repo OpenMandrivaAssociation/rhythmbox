@@ -164,11 +164,12 @@ done
 %{_bindir}/rhythmbox-client
 %{_datadir}/applications/rhythmbox.desktop
 %{_datadir}/applications/rhythmbox-device.desktop
-%{_datadir}/glib-2.0/schemas/*.xml
-%{_datadir}/icons/hicolor/*/apps/rhythmbox*
-%{_datadir}/icons/hicolor/*/places/music-library.*
-%{_datadir}/rhythmbox/
 %{_datadir}/dbus-1/services/org.gnome.Rhythmbox3.service
+%{_datadir}/glib-2.0/schemas/*.xml
+%{_datadir}/rhythmbox/
+%{_iconsdir}/hicolor/*/apps/rhythmbox*
+%{_iconsdir}/hicolor/*/places/music-library.*
+%{_iconsdir}/hicolor/*/status/rhythmbox-*
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
