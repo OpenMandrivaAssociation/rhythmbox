@@ -21,7 +21,6 @@ Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rh
 #gw: add more radio stations
 Patch6: rhythmbox-more-radios.patch
 
-BuildRequires:	gnome-doc-utils
 BuildRequires:	intltool
 BuildRequires:	vala
 BuildRequires:	pkgconfig(avahi-glib)
@@ -30,6 +29,7 @@ BuildRequires:	pkgconfig(clutter-gst-1.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-gtk-1.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-x11-1.0) >= 1.2
 BuildRequires:	pkgconfig(gconf-2.0)
+BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gnome-keyring-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(grilo-0.1) >= 0.1.17
