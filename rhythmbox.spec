@@ -11,7 +11,7 @@
 Name:		rhythmbox
 Summary:	Music Management Application 
 Version:	2.97
-Release:	1
+Release:	2
 License:	GPLv2+ with exception
 Group:		Sound
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -46,7 +46,7 @@ BuildRequires:	pkgconfig(libdmapsharing-3.0)
 BuildRequires:	pkgconfig(libgpod-1.0)
 BuildRequires:	pkgconfig(liblircclient0)
 BuildRequires:	pkgconfig(libmtp)
-BuildRequires:	pkgconfig(libmusicbrainz3)
+BuildRequires:	pkgconfig(libmusicbrainz4)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libpeas-1.0) >= 0.7.3
 BuildRequires:	pkgconfig(libpeas-gtk-1.0) >= 0.7.3
