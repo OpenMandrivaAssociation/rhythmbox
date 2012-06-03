@@ -47,6 +47,7 @@ BuildRequires:	pkgconfig(libgpod-1.0)
 BuildRequires:	pkgconfig(liblircclient0)
 BuildRequires:	pkgconfig(libmtp)
 BuildRequires:	pkgconfig(libmusicbrainz4)
+BuildRequires:	pkgconfig(libdiscid)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libpeas-1.0) >= 0.7.3
 BuildRequires:	pkgconfig(libpeas-gtk-1.0) >= 0.7.3
