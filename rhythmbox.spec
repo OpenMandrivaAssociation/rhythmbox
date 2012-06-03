@@ -3,10 +3,10 @@
 
 %define	gstname gstreamer0.10
 
-%define major 		5
-%define gir_major	3.0
+%define major 		6
+%define girmajor	3.0
 %define libname %mklibname rhythmbox %{major}
-%define girname	%mklibname %{name}-gir %{gir_major}
+%define girname	%mklibname %{name}-gir %{girmajor}
 
 Name:		rhythmbox
 Summary:	Music Management Application 
@@ -206,8 +206,8 @@ done
 %{_libdir}/librhythmbox-core.so.%{major}*
 
 %files -n %{girname}
-%{_libdir}/girepository-1.0/MPID-%{gir_major}.typelib
-%{_libdir}/girepository-1.0/RB-%{gir_major}.typelib
+%{_libdir}/girepository-1.0/MPID-%{girmajor}.typelib
+%{_libdir}/girepository-1.0/RB-%{girmajor}.typelib
 
 %files mozilla
 %{_libdir}/mozilla/plugins/librhythmbox-itms-detection-plugin.so
@@ -217,6 +217,6 @@ done
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/gtk-doc/html/%{name}
-%{_datadir}/gir-1.0/MPID-%{gir_major}.gir
-%{_datadir}/gir-1.0/RB-%{gir_major}.gir
+%{_datadir}/gir-1.0/MPID-%{girmajor}.gir
+%{_datadir}/gir-1.0/RB-%{girmajor}.gir
 
