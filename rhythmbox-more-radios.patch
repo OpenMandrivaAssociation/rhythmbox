@@ -1,0 +1,9 @@
+--- rhythmbox-iradio-initial.pls~	2008-02-20 18:26:45.000000000 +0100
++++ rhythmbox-iradio-initial.pls	2008-02-20 18:28:34.000000000 +0100
+@@ -74,3 +74,6 @@
+ title17=NRK Stortinget (Norway)
+ genre17=
+ 
++file18=http://ebmradio.de:13000/ebm.ogg
++title18=(((EBM Radio))) Strange Music For Strange People
++genre18=EBM
