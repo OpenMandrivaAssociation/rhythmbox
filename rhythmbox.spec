@@ -200,9 +200,8 @@ done
 %{_libdir}/%{name}/plugins/rblirc
 %{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/replaygain
-%{_libdir}/%{name}/plugins/sample-vala
 %{_libdir}/%{name}/plugins/sendto
-%{_libdir}/%{name}/plugins/visualizer
+#%{_libdir}/%{name}/plugins/visualizer
 %{_mandir}/man1/*.1*
 
 %files -n %{libname}
