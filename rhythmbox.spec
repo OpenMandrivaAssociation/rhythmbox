@@ -11,8 +11,8 @@
 
 Name:		rhythmbox
 Summary:	Music Management Application 
-Version:	2.97
-Release:	4
+Version:	2.98
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -184,7 +184,7 @@ done
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
 %{_libdir}/%{name}/plugins/generic-player
-#%{_libdir}/%{name}/plugins/grilo
+%{_libdir}/%{name}/plugins/grilo
 %{_libdir}/%{name}/plugins/im-status
 %{_libdir}/%{name}/plugins/ipod
 %{_libdir}/%{name}/plugins/iradio
@@ -202,7 +202,7 @@ done
 %{_libdir}/%{name}/plugins/replaygain
 %{_libdir}/%{name}/plugins/sample-vala
 %{_libdir}/%{name}/plugins/sendto
-#%{_libdir}/%{name}/plugins/visualizer
+%{_libdir}/%{name}/plugins/visualizer
 %{_mandir}/man1/*.1*
 
 %files -n %{libname}
