@@ -1,5 +1,6 @@
 #gw rb.c
 #define Werror_cflags %nil
+%define _disable_ld_no_undefined 1
 
 %define	gstname gstreamer0.10
 
