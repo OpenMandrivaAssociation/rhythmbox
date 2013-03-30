@@ -11,7 +11,7 @@
 Name:		rhythmbox
 Summary:	Music Management Application 
 Version:	2.97
-Release:	3
+Release:	4
 License:	GPLv2+ with exception
 Group:		Sound
 URL:		http://www.gnome.org/projects/rhythmbox/
@@ -25,7 +25,7 @@ BuildRequires:	intltool
 BuildRequires:	vala
 BuildRequires:	pkgconfig(avahi-glib)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
-BuildRequires:	pkgconfig(clutter-gst-1.0) >= 1.0
+BuildRequires:	pkgconfig(clutter-gst-2.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-gtk-1.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-x11-1.0) >= 1.2
 BuildRequires:	pkgconfig(gconf-2.0)
