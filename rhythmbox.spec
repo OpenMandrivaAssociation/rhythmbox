@@ -116,7 +116,7 @@ Install this if you want to build Rhythmbox plugins.
 %prep
 %setup -q
 cp %SOURCE1 .
-%patch6 -p0
+#%patch6 -p0
 
 %build
 %configure2_5x \
