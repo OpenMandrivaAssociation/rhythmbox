@@ -32,7 +32,7 @@ BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gnome-keyring-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(grilo-0.1) >= 0.1.17
+BuildRequires:	pkgconfig(grilo-0.2) >= 0.1.17
 BuildRequires:	pkgconfig(gstreamer-0.10) >= 0.10.32
 BuildRequires:	pkgconfig(gstreamer-interfaces-0.10) >= 0.10.32
 BuildRequires:	pkgconfig(gstreamer-pbutils-0.10) >= 0.10.32
