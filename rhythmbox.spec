@@ -201,6 +201,7 @@ done
 %{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/replaygain
 %{_libdir}/%{name}/plugins/sendto
+%{_libdir}/%{name}/sample-plugins
 #%{_libdir}/%{name}/plugins/visualizer
 %{_mandir}/man1/*.1*
 
