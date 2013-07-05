@@ -63,7 +63,6 @@ Requires:	gstreamer%{gstapi}-plugins-base
 Requires:	gstreamer%{gstapi}-plugins-good
 Suggests:	gstreamer%{gstapi}-plugins-ugly
 Requires:	gstreamer%{gstapi}-flac
-Requires:	gstreamer%{gstapi}-gnomevfs
 Requires:	gstreamer%{gstapi}-soup
 # For python plugins
 Requires:	python-gi
