@@ -1,28 +1,23 @@
-#gw rb.c
-#define Werror_cflags %nil
 %define _disable_ld_no_undefined 1
+%define url_ver %(echo %{version}|cut -d. -f1,2)
 
-%define	gstname gstreamer0.10
-
-%define major 		6
-%define girmajor	3.0
+%define	gstapi	1.0
+%define major 	7
+%define gimajor	3.0
 %define libname %mklibname rhythmbox %{major}
-%define girname	%mklibname %{name}-gir %{girmajor}
+%define girname	%mklibname %{name}-gir %{gimajor}
 
-Name:		rhythmbox
 Summary:	Music Management Application 
-Version:	2.98
+Name:		rhythmbox
+Version:	2.99.1
 Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
-URL:		http://www.gnome.org/projects/rhythmbox/
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{name}-%{version}.tar.xz
-# gw take default Internet radio station listing from Fedora:
-Source1: http://cvs.fedoraproject.org/viewcvs/*checkout*/rpms/rhythmbox/devel/rhythmbox-iradio-initial.pls
-#gw: add more radio stations
-Patch6: rhythmbox-more-radios.patch
+Url:		http://www.gnome.org/projects/rhythmbox/
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:	intltool
+BuildRequires:	itstool
 BuildRequires:	vala
 BuildRequires:	pkgconfig(avahi-glib)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
@@ -34,10 +29,9 @@ BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gnome-keyring-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(grilo-0.2) >= 0.1.17
-BuildRequires:	pkgconfig(gstreamer-0.10) >= 0.10.32
-BuildRequires:	pkgconfig(gstreamer-interfaces-0.10) >= 0.10.32
-BuildRequires:	pkgconfig(gstreamer-pbutils-0.10) >= 0.10.32
-BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10) >= 0.10.32
+BuildRequires:	pkgconfig(gstreamer-%{gstapi}) >= 0.10.32
+BuildRequires:	pkgconfig(gstreamer-pbutils-%{gstapi}) >= 0.10.32
+BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi}) >= 0.10.32
 BuildRequires:	pkgconfig(gtk+-3.0) >= 3.2.0
 BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(ice)
@@ -47,11 +41,11 @@ BuildRequires:	pkgconfig(libdmapsharing-3.0)
 BuildRequires:	pkgconfig(libgpod-1.0)
 BuildRequires:	pkgconfig(liblircclient0)
 BuildRequires:	pkgconfig(libmtp)
-BuildRequires:	pkgconfig(libmusicbrainz4)
 BuildRequires:	pkgconfig(libdiscid)
 BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libpeas-1.0) >= 0.7.3
 BuildRequires:	pkgconfig(libpeas-gtk-1.0) >= 0.7.3
+BuildRequires:	pkgconfig(libsecret-1)
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libsoup-gnome-2.4)
 BuildRequires:	pkgconfig(mx-1.0) >= 1.0.1
@@ -65,12 +59,12 @@ Suggests:	grilo-plugins
 Suggests:	media-player-info
 
 Requires:	dbus-x11
-Requires:	%{gstname}-plugins-base
-Requires:	%{gstname}-plugins-good
-Suggests:	%{gstname}-plugins-ugly
-Requires:	%{gstname}-flac
-Requires:	%{gstname}-gnomevfs
-Requires:	%{gstname}-soup
+Requires:	gstreamer%{gstapi}-plugins-base
+Requires:	gstreamer%{gstapi}-plugins-good
+Suggests:	gstreamer%{gstapi}-plugins-ugly
+Requires:	gstreamer%{gstapi}-flac
+Requires:	gstreamer%{gstapi}-gnomevfs
+Requires:	gstreamer%{gstapi}-soup
 # For python plugins
 Requires:	python-gi
 
@@ -83,22 +77,22 @@ playback of Ogg Vorbis and Mp3 and burning of CD-Rs.
 
 %package -n %{libname}
 Group:System/Libraries
-Summary: Shared library part of %{name}
+Summary:	Shared library part of %{name}
 
 %description -n %{libname}
 This is the shared library part of %{name}.
 
 %package -n %{girname}
-Summary: GObject Introspection interface description for %{name}
-Group: System/Libraries
+Summary:	GObject Introspection interface description for %{name}
+Group:		System/Libraries
 
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
 %package mozilla
-Group: Sound
-Summary: Rhythmbox integration for Mozilla Firefox
-Requires: %{name} = %{version}
+Group:		Sound
+Summary:	Rhythmbox integration for Mozilla Firefox
+Requires:	%{name} = %{version}
 
 %description mozilla
 This plugin integates Rhythmbox with Mozilla and compatible
@@ -106,33 +100,28 @@ browsers. It provides a handler for itms:// Links to Apples iTunes
 Music Store.
 
 %package devel
-Group: Development/C
-Summary: Rhythmbox plugin development files
-Requires: %{libname} = %{version}-%{release}
-Requires: %{girname} = %{version}-%{release}
+Group:		Development/C
+Summary:	Rhythmbox plugin development files
+Requires:	%{libname} = %{version}-%{release}
+Requires:	%{girname} = %{version}-%{release}
 
 %description devel
 Install this if you want to build Rhythmbox plugins.
 
 %prep
 %setup -q
-cp %SOURCE1 .
-#%patch6 -p0
 
 %build
 %configure2_5x \
 	--disable-static \
-	--disable-scrollkeeper \
 	--disable-gtk-doc \
-	--with-mdns=avahi \
-	--enable-vala \
-	--with-gnome-keyring
+	--with-libsecret \
+	--enable-vala
 
 %make 
 
 %install
 %makeinstall_std _ENABLE_SK=false
-find %{buildroot} -type f -name "*.la" -delete -print
 %find_lang %{name} --with-gnome
 
 desktop-file-install --vendor="" \
@@ -140,9 +129,6 @@ desktop-file-install --vendor="" \
 	--add-category="Audio;Player" \
 	--dir %{buildroot}%{_datadir}/applications \
 	%{buildroot}%{_datadir}/applications/*
-
-# Replace the default radios with Ogg Radios
-cp -a rhythmbox-iradio-initial.pls %{buildroot}%{_libdir}/rhythmbox/plugins/iradio/iradio-initial.pls
 
 # save space by linking identical images in translated docs
 helpdir=%{buildroot}%{_datadir}/gnome/help/%{name}
@@ -202,15 +188,15 @@ done
 %{_libdir}/%{name}/plugins/replaygain
 %{_libdir}/%{name}/plugins/sendto
 %{_libdir}/%{name}/sample-plugins
-#%{_libdir}/%{name}/plugins/visualizer
+%{_libdir}/%{name}/plugins/visualizer
 %{_mandir}/man1/*.1*
 
 %files -n %{libname}
 %{_libdir}/librhythmbox-core.so.%{major}*
 
 %files -n %{girname}
-%{_libdir}/girepository-1.0/MPID-%{girmajor}.typelib
-%{_libdir}/girepository-1.0/RB-%{girmajor}.typelib
+%{_libdir}/girepository-1.0/MPID-%{gimajor}.typelib
+%{_libdir}/girepository-1.0/RB-%{gimajor}.typelib
 
 %files mozilla
 %{_libdir}/mozilla/plugins/librhythmbox-itms-detection-plugin.so
@@ -220,6 +206,6 @@ done
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/gtk-doc/html/%{name}
-%{_datadir}/gir-1.0/MPID-%{girmajor}.gir
-%{_datadir}/gir-1.0/RB-%{girmajor}.gir
+%{_datadir}/gir-1.0/MPID-%{gimajor}.gir
+%{_datadir}/gir-1.0/RB-%{gimajor}.gir
 
