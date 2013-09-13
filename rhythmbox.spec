@@ -2,14 +2,14 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 %define	gstapi	1.0
-%define major 	7
+%define major 	8
 %define gimajor	3.0
 %define libname %mklibname rhythmbox %{major}
 %define girname	%mklibname %{name}-gir %{gimajor}
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	2.99.1
+Version:	3.0
 Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
@@ -155,7 +155,7 @@ done
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
 %{_iconsdir}/hicolor/*/apps/rhythmbox*
-%{_iconsdir}/hicolor/*/places/music-library.*
+#% {_iconsdir}/hicolor/*/places/music-library.*
 %{_iconsdir}/hicolor/*/status/rhythmbox-*
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
