@@ -19,7 +19,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{v
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	vala
-BuildRequires:	python
+BuildRequires:	python3-devel
 BuildRequires:	pkgconfig(avahi-glib)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
 BuildRequires:	pkgconfig(clutter-gst-2.0) >= 1.0
