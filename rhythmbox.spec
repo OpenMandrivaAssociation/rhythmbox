@@ -37,7 +37,6 @@ BuildRequires:	pkgconfig(gtk+-3.0) >= 3.2.0
 BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0)
-BuildRequires:	pkgconfig(libbrasero-media3)
 BuildRequires:	pkgconfig(libdmapsharing-3.0)
 BuildRequires:	pkgconfig(libgpod-1.0)
 BuildRequires:	pkgconfig(liblircclient0)
