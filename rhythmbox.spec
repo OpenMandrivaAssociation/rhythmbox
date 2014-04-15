@@ -163,9 +163,7 @@ done
 %{_libdir}/%{name}/plugins/artsearch
 %{_libdir}/%{name}/plugins/audiocd
 %{_libdir}/%{name}/plugins/audioscrobbler
-%{_libdir}/%{name}/plugins/cd-recorder
 %{_libdir}/%{name}/plugins/context
-%{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
 %{_libdir}/%{name}/plugins/generic-player
