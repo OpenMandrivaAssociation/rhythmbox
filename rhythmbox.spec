@@ -9,7 +9,7 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.0.1
+Version:	3.0.2
 Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
@@ -66,6 +66,13 @@ Requires:	gstreamer%{gstapi}-flac
 Requires:	gstreamer%{gstapi}-soup
 # For python plugins
 Requires:	python-gi
+Requires:	typelib(Peas)
+Requires:	typelib(PeasGtk)
+Requires:	python3-gi
+Requires:	typelib(Zeitgeist)
+Requires:	typelib(RB)
+Requires:	typelib(MPID)
+Requires:	python-mako
 
 # md no more upnp plugin
 Obsoletes:	rhythmbox-upnp < 2.96
