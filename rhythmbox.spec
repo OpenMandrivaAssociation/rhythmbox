@@ -72,7 +72,7 @@ Requires:	python3-gi
 Requires:	typelib(Zeitgeist)
 Requires:	typelib(RB)
 Requires:	typelib(MPID)
-Requires:	python-mako
+Requires:	python3-mako
 
 # md no more upnp plugin
 Obsoletes:	rhythmbox-upnp < 2.96
