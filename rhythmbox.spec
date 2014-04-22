@@ -155,7 +155,7 @@ for f in $helpdir/C/figures/*.png; do
 done
 
 # Remove the zeitgeist plugin as zeitgeist has not been ported to python3
-rm -rf %{_libdir}/%{name}/plugins/rbzeitgeist
+rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 
 %files -f %{name}.lang
 %doc AUTHORS COPYING README NEWS
