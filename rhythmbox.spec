@@ -10,7 +10,7 @@
 Summary:	Music Management Application 
 Name:		rhythmbox
 Version:	3.0.2
-Release:	2
+Release:	3
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
@@ -68,6 +68,7 @@ Requires:	gstreamer%{gstapi}-soup
 Requires:	python-gi
 Requires:	typelib(Peas)
 Requires:	typelib(PeasGtk)
+Requires:	typelib(WebKit)
 Requires:	python3-gi
 #Zeitgeist has not been ported to python3 so its plugin doesnt work
 #Requires:	typelib(Zeitgeist)
