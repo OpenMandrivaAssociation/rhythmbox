@@ -8,6 +8,7 @@
 %define girname	%mklibname %{name}-gir %{gimajor}
 
 Summary:	Music Management Application 
+
 Name:		rhythmbox
 Version:	3.0.2
 Release:	3
@@ -88,11 +89,13 @@ playback of Ogg Vorbis and Mp3 and burning of CD-Rs.
 Group:System/Libraries
 Summary:	Shared library part of %{name}
 
+
 %description -n %{libname}
 This is the shared library part of %{name}.
 
 %package -n %{girname}
 Summary:	GObject Introspection interface description for %{name}
+
 Group:		System/Libraries
 
 %description -n %{girname}
@@ -101,6 +104,7 @@ GObject Introspection interface description for %{name}.
 %package mozilla
 Group:		Sound
 Summary:	Rhythmbox integration for Mozilla Firefox
+
 Requires:	%{name} = %{version}
 
 %description mozilla
@@ -111,6 +115,7 @@ Music Store.
 %package devel
 Group:		Development/C
 Summary:	Rhythmbox plugin development files
+
 Requires:	%{libname} = %{version}-%{release}
 Requires:	%{girname} = %{version}-%{release}
 
@@ -218,145 +223,5 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/gtk-doc/html/%{name}
 %{_datadir}/gir-1.0/MPID-%{gimajor}.gir
 %{_datadir}/gir-1.0/RB-%{gimajor}.gir
-
-
-%changelog
-* Wed Apr 23 2014 Crispin Boylan <crisb@mandriva.org> 3.0.2-3
-+ Revision: 0f24b1f
-- Requires webkit typelib
-
-* Tue Apr 22 2014 Crispin Boylan <crisb@mandriva.org> 3.0.2-2
-+ Revision: 6501ff1
-- Fix
-
-* Tue Apr 22 2014 Crispin Boylan <crisb@mandriva.org> 3.0.2-2
-+ Revision: 76f4414
-- Remove zeitgeist plugin due to no python3 version
-
-* Tue Apr 22 2014 Crispin Boylan <crisb@mandriva.org> 3.0.2-1
-+ Revision: 065d970
-- Fix BR
-
-* Tue Apr 22 2014 Crispin Boylan <crisb@mandriva.org> 3.0.2-1
-+ Revision: 14962da
-- Fix BR
-
-* Mon Apr 21 2014 Crispin Boylan <crisb@mandriva.org> 3.0.2-1
-+ Revision: b09ae45
-- 3.0.2, fix requires on plugins
-
-* Tue Apr 15 2014 Crispin Boylan <crisb@mandriva.org> 3.0.1-1
-+ Revision: 945cc72
-- Fix file list
-
-* Tue Apr 15 2014 Crispin Boylan <crisb@mandriva.org> 3.0.1-1
-+ Revision: e971cc0
-- Fix file list
-
-* Fri Mar 07 2014 Crispin Boylan <crisb@mandriva.org> 3.0.1-1
-+ Revision: a533d0d
-- Brasero in contrib
-
-* Fri Mar 07 2014 Crispin Boylan <crisb@mandriva.org> 3.0.1-1
-+ Revision: ac9e885
-- Brasero in contrib
-
-* Tue Mar 04 2014 Crispin Boylan <crisb@mandriva.org> 3.0.1-1
-+ Revision: bc772f8
-- 3.0.1
-
-* Tue Mar 04 2014 Crispin Boylan <crisb@mandriva.org> 3.0.1-1
-+ Revision: 931fcef
-- 3.0.1
-
-* Tue Mar 04 2014 Crispin Boylan <crisb@mandriva.org> 3.0-1
-+ Revision: 3dc7ce9
-- 3.0
-
-* Sat Feb 08 2014 Tomasz Paweł Gajc <tpgxyz@gmail.com> 2.99.1-2
-+ Revision: dbe1b88
-- MassBuild#328: Increase release tag
-
-* Sat Dec 07 2013 Bernhard Rosenkraenzer <bero@bero.eu> 3.0-5
-+ Revision: 0774f34
-- MassBuild#289: Increase release tag
-
-* Sat Dec 07 2013 Bernhard Rosenkraenzer <bero@bero.eu> 3.0-4
-+ Revision: 377a7ed
-- MassBuild#289: Increase release tag
-
-* Sat Dec 07 2013 Bernhard Rosenkraenzer <bero@bero.eu> 3.0-3
-+ Revision: 382beeb
-- MassBuild#289: Increase release tag
-
-* Sat Dec 07 2013 Bernhard Rosenkraenzer <bero@bero.eu> 3.0-2
-+ Revision: 282aa31
-- MassBuild#289: Increase release tag
-
-* Sat Sep 14 2013 Alexander Khryukin <alexander@mezon.ru> 3.0-1
-+ Revision: 720e11a
-- BR python-devel replaced with python3-devel
-
-* Fri Sep 13 2013 Alexander Khryukin <alexander@mezon.ru> 3.0-1
-+ Revision: 457cb1e
-- br python
-
-* Fri Sep 13 2013 Alexander Khryukin <alexander@mezon.ru> 3.0-1
-+ Revision: d4f510b
-- version update 3.0
-
-* Fri Jul 05 2013 mdawkins (Matthew Dawkins) <mattydaw@gmail.com> 2.99.1-1
-+ Revision: 0b1b5de
-- adjusted reqs
-
-* Fri Jul 05 2013 mdawkins (Matthew Dawkins) <mattydaw@gmail.com> 2.99.1-1
-+ Revision: 829bf2c
-- new version 2.99.1
-- cleaned up specs
-
-* Sun Mar 31 2013 Crispin Boylan <crisb@mandriva.org> 2.98-1
-+ Revision: 8e24a3c
-- Fix file list
-
-* Sat Mar 30 2013 Crispin Boylan <crisb@mandriva.org> 2.98-1
-+ Revision: db0f3c9
-- disable visualizer again
-
-* Sat Mar 30 2013 Crispin Boylan <crisb@mandriva.org> 2.98-1
-+ Revision: 5dace84
-- 2.98
-
-* Sat Mar 30 2013 Crispin Boylan <crisb@mandriva.org> 2.97-4
-+ Revision: 5f54b72
-- Disable some stuff for now
-
-* Sat Mar 30 2013 Crispin Boylan <crisb@mandriva.org> 2.97-4
-+ Revision: 0fdfe60
-- Allow undefined
-
-* Sat Mar 30 2013 Crispin Boylan <crisb@mandriva.org> 2.97-4
-+ Revision: f16525c
-- Disable patch
-
-* Sat Mar 30 2013 Crispin Boylan <crisb@mandriva.org> 2.97-4
-+ Revision: b8f2c17
-- Fix BR
-
-* Sat Mar 30 2013 Crispin Boylan <crisb@mandriva.org> 2.97-4
-+ Revision: 53e877a
-- Fix BR
-
-* Fri Feb 08 2013 Jochen Schoenfelder <arisel@arisel.de> 2.97-3
-+ Revision: de8b544
-- New build
-
-* Wed Jan 30 2013 Bernhard Rosenkränzer <bero@lindev.ch> 2.97-2
-+ Revision: b59dd21
-- Fix .abf.yml syntax
-
-* Sun Jun 03 2012 goetz <goetz@mandriva.org> 2.97-2
-+ Revision: 4ca91e3
-- fix build dep for musicbrainz
-- SILENT: svn-revision: 802173
 
 
