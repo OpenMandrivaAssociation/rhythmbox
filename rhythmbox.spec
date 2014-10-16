@@ -9,8 +9,8 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.0.2
-Release:	3
+Version:	3.1
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
@@ -19,13 +19,12 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{v
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	vala
-BuildRequires:	python3-devel
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	pkgconfig(avahi-glib)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
 BuildRequires:	pkgconfig(clutter-gst-2.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-gtk-1.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-x11-1.0) >= 1.2
-BuildRequires:	pkgconfig(gconf-2.0)
 BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gnome-keyring-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
@@ -48,7 +47,6 @@ BuildRequires:	pkgconfig(libpeas-gtk-1.0) >= 0.7.3
 BuildRequires:	pkgconfig(libsecret-1)
 BuildRequires:	pkgconfig(libsoup-2.4)
 BuildRequires:	pkgconfig(libsoup-gnome-2.4)
-BuildRequires:	pkgconfig(mx-1.0) >= 1.0.1
 BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(tdb)
@@ -69,7 +67,6 @@ Requires:	python-gi
 Requires:	typelib(Peas)
 Requires:	typelib(PeasGtk)
 Requires:	typelib(WebKit)
-Requires:	python3-gi
 #Zeitgeist has not been ported to python3 so its plugin doesnt work
 #Requires:	typelib(Zeitgeist)
 #Requires:	zeitgeist
@@ -121,8 +118,7 @@ Install this if you want to build Rhythmbox plugins.
 %setup -q
 
 %build
-%configure2_5x \
-	--disable-static \
+%configure \
 	--disable-gtk-doc \
 	--with-libsecret \
 	--enable-vala
@@ -167,6 +163,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/dbus-1/services/org.gnome.Rhythmbox3.service
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
+%{_datadir}/appdata/rhythmbox.appdata.xml
 %{_iconsdir}/hicolor/*/apps/rhythmbox*
 #% {_iconsdir}/hicolor/*/places/music-library.*
 %{_iconsdir}/hicolor/*/status/rhythmbox-*
@@ -198,7 +195,6 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/replaygain
 %{_libdir}/%{name}/plugins/sendto
 %{_libdir}/%{name}/sample-plugins
-%{_libdir}/%{name}/plugins/visualizer
 %{_mandir}/man1/*.1*
 
 %files -n %{libname}
