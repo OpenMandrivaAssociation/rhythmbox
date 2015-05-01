@@ -2,7 +2,7 @@
 %define url_ver %(echo %{version}|cut -d. -f1,2)
 
 %define	gstapi	1.0
-%define major 	8
+%define major 	9
 %define gimajor	3.0
 %define libname %mklibname rhythmbox %{major}
 %define girname	%mklibname %{name}-gir %{gimajor}
@@ -171,6 +171,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/audiocd
 %{_libdir}/%{name}/plugins/audioscrobbler
 %{_libdir}/%{name}/plugins/context
+%{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
 %{_libdir}/%{name}/plugins/generic-player
@@ -190,6 +191,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/rblirc
 %{_libdir}/%{name}/plugins/replaygain
 %{_libdir}/%{name}/plugins/sendto
+%{_libdir}/%{name}/plugins/soundcloud
 %{_libdir}/%{name}/sample-plugins
 %{_mandir}/man1/*.1*
 
