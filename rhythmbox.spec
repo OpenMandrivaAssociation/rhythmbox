@@ -9,8 +9,8 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.1
-Release:	2
+Version:	3.2.1
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
@@ -67,9 +67,6 @@ Requires:	python-gi
 Requires:	typelib(Peas)
 Requires:	typelib(PeasGtk)
 Requires:	typelib(WebKit)
-#Zeitgeist has not been ported to python3 so its plugin doesnt work
-#Requires:	typelib(Zeitgeist)
-#Requires:	zeitgeist
 Requires:	typelib(RB)
 Requires:	typelib(MPID)
 Requires:	python3-mako
@@ -191,7 +188,6 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/python-console
 %{_libdir}/%{name}/plugins/rb
 %{_libdir}/%{name}/plugins/rblirc
-#{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/replaygain
 %{_libdir}/%{name}/plugins/sendto
 %{_libdir}/%{name}/sample-plugins

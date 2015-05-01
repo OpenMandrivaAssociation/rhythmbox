@@ -2,5 +2,6 @@ removed_sources:
   rhythmbox-3.0.1.tar.xz: 1de8c3bbaed707db2d9cfb68a049f82701823342
   rhythmbox-3.0.2.tar.xz: b9cc07688f464c0abf4de231e79a289eab2a1872
   rhythmbox-3.0.tar.xz: 594b87df4ba10df9fedf8b7285f02b6aa3a377aa
-sources:
   rhythmbox-3.1.tar.xz: 8afdc1bcdc06df980fedb54c09fde1ed010cc59a
+sources:
+  rhythmbox-3.2.1.tar.xz: 0399e6b2a6daed0ed2faec8db4f366a075583f4d
