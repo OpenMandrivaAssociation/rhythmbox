@@ -11,7 +11,7 @@
 Summary:	Music Management Application 
 Name:		rhythmbox
 Version:	3.2.1
-Release:	3
+Release:	4
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
@@ -52,7 +52,6 @@ BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(tdb)
 BuildRequires:	pkgconfig(totem-plparser)
-BuildRequires:	pkgconfig(webkitgtk-3.0)
 
 Suggests:	grilo-plugins
 Suggests:	media-player-info
@@ -119,6 +118,7 @@ Install this if you want to build Rhythmbox plugins.
 %configure \
 	--disable-gtk-doc \
 	--with-libsecret \
+	--without-webkit \
 	--enable-vala
 
 %make 
@@ -171,7 +171,6 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/artsearch
 %{_libdir}/%{name}/plugins/audiocd
 %{_libdir}/%{name}/plugins/audioscrobbler
-%{_libdir}/%{name}/plugins/context
 %{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
