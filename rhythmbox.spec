@@ -16,6 +16,7 @@ License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
+#Patches for fix build with new gstreamer (penguin).
 Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
 Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
 
@@ -76,7 +77,7 @@ Requires:	gstreamer%{gstapi}-soup
 Requires:	python-gi
 Requires:	typelib(Peas)
 Requires:	typelib(PeasGtk)
-Requires:	typelib(WebKit)
+#Requires:	typelib(WebKit)
 Requires:	typelib(RB)
 Requires:	typelib(MPID)
 Requires:	python3-mako
@@ -105,7 +106,7 @@ GObject Introspection interface description for %{name}.
 %package mozilla
 Group:		Sound
 Summary:	Rhythmbox integration for Mozilla Firefox
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description mozilla
 This plugin integates Rhythmbox with Mozilla and compatible
