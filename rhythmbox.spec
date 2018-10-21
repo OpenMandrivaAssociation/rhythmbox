@@ -3,24 +3,27 @@
 %define _disable_rebuild_configure 1
 
 %define	gstapi	1.0
-%define major 	9
+%define major 	10
 %define gimajor	3.0
 %define libname %mklibname rhythmbox %{major}
 %define girname	%mklibname %{name}-gir %{gimajor}
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.2.1
-Release:	4
+Version:	3.4.2
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
+#Patches for fix build with new gstreamer (penguin).
+Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
+Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
 
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	vala
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(avahi-glib)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
 BuildRequires:	pkgconfig(clutter-gst-2.0) >= 1.0
@@ -29,7 +32,7 @@ BuildRequires:	pkgconfig(clutter-x11-1.0) >= 1.2
 BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gnome-keyring-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(grilo-0.2) >= 0.1.17
+BuildRequires:	pkgconfig(grilo-0.3)
 BuildRequires:	pkgconfig(gstreamer-%{gstapi}) >= 0.10.32
 BuildRequires:	pkgconfig(gstreamer-pbutils-%{gstapi}) >= 0.10.32
 BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi}) >= 0.10.32
@@ -52,6 +55,14 @@ BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(tdb)
 BuildRequires:	pkgconfig(totem-plparser)
+#BuildRequires:	pkgconfig(libbrasero-media3)
+BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.18.0
+BuildRequires:	pkgconfig(gio-2.0) >= 2.26.0
+BuildRequires:	pkgconfig(gio-unix-2.0) >= 2.26.0
+BuildRequires:	pkgconfig(glib-2.0) >= 2.32.0
+BuildRequires:	yelp-tools
+BuildRequires:	gettext-devel
+BuildRequires:	python-gobject3
 
 Suggests:	grilo-plugins
 Suggests:	media-player-info
@@ -66,7 +77,7 @@ Requires:	gstreamer%{gstapi}-soup
 Requires:	python-gi
 Requires:	typelib(Peas)
 Requires:	typelib(PeasGtk)
-Requires:	typelib(WebKit)
+#Requires:	typelib(WebKit)
 Requires:	typelib(RB)
 Requires:	typelib(MPID)
 Requires:	python3-mako
@@ -95,7 +106,7 @@ GObject Introspection interface description for %{name}.
 %package mozilla
 Group:		Sound
 Summary:	Rhythmbox integration for Mozilla Firefox
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description mozilla
 This plugin integates Rhythmbox with Mozilla and compatible
@@ -113,6 +124,7 @@ Install this if you want to build Rhythmbox plugins.
 
 %prep
 %setup -q
+%autosetup -p1
 
 %build
 %configure \
@@ -164,13 +176,15 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/appdata/rhythmbox.appdata.xml
 %{_iconsdir}/hicolor/*/apps/rhythmbox*
 #% {_iconsdir}/hicolor/*/places/music-library.*
-%{_iconsdir}/hicolor/*/status/rhythmbox-*
+#{_iconsdir}/hicolor/*/status/rhythmbox-*
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
+%{_libdir}/%{name}/plugins/android
 %{_libdir}/%{name}/plugins/artsearch
 %{_libdir}/%{name}/plugins/audiocd
 %{_libdir}/%{name}/plugins/audioscrobbler
+%{_libdir}/%{name}/plugins/context
 %{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
@@ -192,6 +206,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/replaygain
 %{_libdir}/%{name}/plugins/sendto
 %{_libdir}/%{name}/plugins/soundcloud
+%{_libdir}/%{name}/plugins/webremote
 %{_libdir}/%{name}/sample-plugins
 %{_mandir}/man1/*.1*
 
