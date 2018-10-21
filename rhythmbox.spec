@@ -3,15 +3,15 @@
 %define _disable_rebuild_configure 1
 
 %define	gstapi	1.0
-%define major 	9
+%define major 	10
 %define gimajor	3.0
 %define libname %mklibname rhythmbox %{major}
 %define girname	%mklibname %{name}-gir %{gimajor}
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.2.1
-Release:	4
+Version:	3.4.2
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
@@ -20,7 +20,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{v
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	vala
-BuildRequires:	pkgconfig(python3)
+BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(avahi-glib)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
 BuildRequires:	pkgconfig(clutter-gst-2.0) >= 1.0
@@ -52,6 +52,14 @@ BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(tdb)
 BuildRequires:	pkgconfig(totem-plparser)
+
+BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.18.0
+BuildRequires:	pkgconfig(gio-2.0) >= 2.26.0
+BuildRequires:	pkgconfig(gio-unix-2.0) >= 2.26.0
+BuildRequires:	pkgconfig(glib-2.0) >= 2.32.0
+BuildRequires:	yelp-tools
+BuildRequires:	gettext-devel
+BuildRequires:	python-gobject3
 
 Suggests:	grilo-plugins
 Suggests:	media-player-info
