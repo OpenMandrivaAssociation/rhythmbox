@@ -54,7 +54,7 @@ BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(tdb)
 BuildRequires:	pkgconfig(totem-plparser)
-BuildRequires:	pkgconfig(libbrasero-media3)
+#BuildRequires:	pkgconfig(libbrasero-media3)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.18.0
 BuildRequires:	pkgconfig(gio-2.0) >= 2.26.0
 BuildRequires:	pkgconfig(gio-unix-2.0) >= 2.26.0
@@ -175,7 +175,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/appdata/rhythmbox.appdata.xml
 %{_iconsdir}/hicolor/*/apps/rhythmbox*
 #% {_iconsdir}/hicolor/*/places/music-library.*
-%{_iconsdir}/hicolor/*/status/rhythmbox-*
+#{_iconsdir}/hicolor/*/status/rhythmbox-*
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
