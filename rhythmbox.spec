@@ -16,6 +16,8 @@ License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
+Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
+Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
 
 BuildRequires:	intltool
 BuildRequires:	itstool
@@ -52,7 +54,7 @@ BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(tdb)
 BuildRequires:	pkgconfig(totem-plparser)
-
+BuildRequires:	pkgconfig(libbrasero-media3)
 BuildRequires:	pkgconfig(gdk-pixbuf-2.0) >= 2.18.0
 BuildRequires:	pkgconfig(gio-2.0) >= 2.26.0
 BuildRequires:	pkgconfig(gio-unix-2.0) >= 2.26.0
@@ -121,6 +123,7 @@ Install this if you want to build Rhythmbox plugins.
 
 %prep
 %setup -q
+%autosetup -p1
 
 %build
 %configure \
