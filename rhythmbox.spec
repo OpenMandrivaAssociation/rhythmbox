@@ -29,7 +29,7 @@ BuildRequires:	pkgconfig(clutter-x11-1.0) >= 1.2
 BuildRequires:	pkgconfig(gnome-doc-utils)
 BuildRequires:	pkgconfig(gnome-keyring-1)
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
-BuildRequires:	pkgconfig(grilo-0.2) >= 0.1.17
+BuildRequires:	pkgconfig(grilo-0.3)
 BuildRequires:	pkgconfig(gstreamer-%{gstapi}) >= 0.10.32
 BuildRequires:	pkgconfig(gstreamer-pbutils-%{gstapi}) >= 0.10.32
 BuildRequires:	pkgconfig(gstreamer-plugins-base-%{gstapi}) >= 0.10.32
