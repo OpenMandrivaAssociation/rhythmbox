@@ -17,7 +17,7 @@ Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 #Patches for fix build with new gstreamer (penguin).
-Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
+#Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
 Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
 
 BuildRequires:	intltool
