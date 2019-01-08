@@ -10,15 +10,15 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.2
-Release:	2
+Version:	3.4.3
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 #Patches for fix build with new gstreamer (penguin).
-Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
-Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
+#Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
+#Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
 
 BuildRequires:	intltool
 BuildRequires:	itstool
@@ -173,7 +173,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/dbus-1/services/org.gnome.Rhythmbox3.service
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
-%{_datadir}/appdata/rhythmbox.appdata.xml
+%{_datadir}/metainfo/%{name}.appdata.xml
 %{_iconsdir}/hicolor/*/apps/rhythmbox*
 #% {_iconsdir}/hicolor/*/places/music-library.*
 #{_iconsdir}/hicolor/*/status/rhythmbox-*
