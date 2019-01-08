@@ -173,7 +173,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/dbus-1/services/org.gnome.Rhythmbox3.service
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
-%{_datadir}/appdata/rhythmbox.appdata.xml
+%{_datadir}/metainfo/%{name}.appdata.xml
 %{_iconsdir}/hicolor/*/apps/rhythmbox*
 #% {_iconsdir}/hicolor/*/places/music-library.*
 #{_iconsdir}/hicolor/*/status/rhythmbox-*
