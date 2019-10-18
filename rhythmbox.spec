@@ -11,7 +11,7 @@
 Summary:	Music Management Application 
 Name:		rhythmbox
 Version:	3.4.3
-Release:	1
+Release:	2
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
@@ -64,8 +64,8 @@ BuildRequires:	yelp-tools
 BuildRequires:	gettext-devel
 BuildRequires:	python-gobject3
 
-Suggests:	grilo-plugins
-Suggests:	media-player-info
+Recommends:	grilo-plugins
+Recommends:	media-player-info
 
 Requires:	dbus-x11
 Requires:	gstreamer%{gstapi}-plugins-base
