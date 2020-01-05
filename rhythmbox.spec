@@ -10,15 +10,12 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.3
-Release:	3
+Version:	3.4.4
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
-#Patches for fix build with new gstreamer (penguin).
-#Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
-#Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
 
 BuildRequires:	intltool
 BuildRequires:	itstool
@@ -133,10 +130,10 @@ Install this if you want to build Rhythmbox plugins.
 	--without-webkit \
 	--enable-vala
 
-%make 
+%make_build
 
 %install
-%makeinstall_std _ENABLE_SK=false
+%make_install _ENABLE_SK=false
 %find_lang %{name} --with-gnome
 
 desktop-file-install --vendor="" \
