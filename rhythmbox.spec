@@ -171,7 +171,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
 %{_datadir}/metainfo/%{name}.appdata.xml
-%{_iconsdir}/hicolor/*/apps/rhythmbox*
+#{_iconsdir}/hicolor/*/apps/rhythmbox*
 #% {_iconsdir}/hicolor/*/places/music-library.*
 #{_iconsdir}/hicolor/*/status/rhythmbox-*
 %{_libexecdir}/rhythmbox-metadata
@@ -201,7 +201,6 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/rb
 %{_libdir}/%{name}/plugins/rblirc
 %{_libdir}/%{name}/plugins/replaygain
-%{_libdir}/%{name}/plugins/sendto
 %{_libdir}/%{name}/plugins/soundcloud
 %{_libdir}/%{name}/plugins/webremote
 %{_libdir}/%{name}/sample-plugins
