@@ -194,7 +194,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/mmkeys
 %{_libdir}/%{name}/plugins/mpris
 %{_libdir}/%{name}/plugins/mtpdevice
-%{_libdir}/%{name}/plugins/plugins/listenbrainz/*
+%{_libdir}/%{name}/plugins/listenbrainz/*
 %{_libdir}/%{name}/plugins/notification
 %{_libdir}/%{name}/plugins/power-manager
 %{_libdir}/%{name}/plugins/python-console
