@@ -10,15 +10,12 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.3
-Release:	3
+Version:	3.4.4
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
-#Patches for fix build with new gstreamer (penguin).
-#Patch0:		rhythmbox-3.4.2-fix_mediakeys_api.patch
-#Patch1:		rhythmbox-3.4.2-fix-build-with-gstreamer114.patch
 
 BuildRequires:	intltool
 BuildRequires:	itstool
@@ -103,15 +100,15 @@ Group:		System/Libraries
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
-%package mozilla
-Group:		Sound
-Summary:	Rhythmbox integration for Mozilla Firefox
-Requires:	%{name} = %{version}-%{release}
+#package mozilla
+#Group:		Sound
+#Summary:	Rhythmbox integration for Mozilla Firefox
+#Requires:	%{name} = %{version}-%{release}
 
-%description mozilla
-This plugin integates Rhythmbox with Mozilla and compatible
-browsers. It provides a handler for itms:// Links to Apples iTunes
-Music Store.
+#description mozilla
+#This plugin integates Rhythmbox with Mozilla and compatible
+#browsers. It provides a handler for itms:// Links to Apples iTunes
+#Music Store.
 
 %package devel
 Group:		Development/C
@@ -133,10 +130,10 @@ Install this if you want to build Rhythmbox plugins.
 	--without-webkit \
 	--enable-vala
 
-%make 
+%make_build
 
 %install
-%makeinstall_std _ENABLE_SK=false
+%make_install _ENABLE_SK=false
 %find_lang %{name} --with-gnome
 
 desktop-file-install --vendor="" \
@@ -174,9 +171,8 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
 %{_datadir}/metainfo/%{name}.appdata.xml
-%{_iconsdir}/hicolor/*/apps/rhythmbox*
-#% {_iconsdir}/hicolor/*/places/music-library.*
-#{_iconsdir}/hicolor/*/status/rhythmbox-*
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox.svg
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
@@ -198,13 +194,13 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/mmkeys
 %{_libdir}/%{name}/plugins/mpris
 %{_libdir}/%{name}/plugins/mtpdevice
+%{_libdir}/%{name}/plugins/listenbrainz/*
 %{_libdir}/%{name}/plugins/notification
 %{_libdir}/%{name}/plugins/power-manager
 %{_libdir}/%{name}/plugins/python-console
 %{_libdir}/%{name}/plugins/rb
 %{_libdir}/%{name}/plugins/rblirc
 %{_libdir}/%{name}/plugins/replaygain
-%{_libdir}/%{name}/plugins/sendto
 %{_libdir}/%{name}/plugins/soundcloud
 %{_libdir}/%{name}/plugins/webremote
 %{_libdir}/%{name}/sample-plugins
@@ -217,8 +213,8 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/girepository-1.0/MPID-%{gimajor}.typelib
 %{_libdir}/girepository-1.0/RB-%{gimajor}.typelib
 
-%files mozilla
-%{_libdir}/mozilla/plugins/librhythmbox-itms-detection-plugin.so
+#files mozilla
+#{_libdir}/mozilla/plugins/librhythmbox-itms-detection-plugin.so
 
 %files devel
 %{_includedir}/%{name}
