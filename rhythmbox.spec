@@ -100,15 +100,15 @@ Group:		System/Libraries
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
 
-%package mozilla
-Group:		Sound
-Summary:	Rhythmbox integration for Mozilla Firefox
-Requires:	%{name} = %{version}-%{release}
+#package mozilla
+#Group:		Sound
+#Summary:	Rhythmbox integration for Mozilla Firefox
+#Requires:	%{name} = %{version}-%{release}
 
-%description mozilla
-This plugin integates Rhythmbox with Mozilla and compatible
-browsers. It provides a handler for itms:// Links to Apples iTunes
-Music Store.
+#description mozilla
+#This plugin integates Rhythmbox with Mozilla and compatible
+#browsers. It provides a handler for itms:// Links to Apples iTunes
+#Music Store.
 
 %package devel
 Group:		Development/C
@@ -213,8 +213,8 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/girepository-1.0/MPID-%{gimajor}.typelib
 %{_libdir}/girepository-1.0/RB-%{gimajor}.typelib
 
-%files mozilla
-%{_libdir}/mozilla/plugins/librhythmbox-itms-detection-plugin.so
+#files mozilla
+#{_libdir}/mozilla/plugins/librhythmbox-itms-detection-plugin.so
 
 %files devel
 %{_includedir}/%{name}
