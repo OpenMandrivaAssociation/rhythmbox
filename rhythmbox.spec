@@ -171,9 +171,8 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
 %{_datadir}/metainfo/%{name}.appdata.xml
-#{_iconsdir}/hicolor/*/apps/rhythmbox*
-#% {_iconsdir}/hicolor/*/places/music-library.*
-#{_iconsdir}/hicolor/*/status/rhythmbox-*
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox.svg
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
@@ -195,6 +194,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/mmkeys
 %{_libdir}/%{name}/plugins/mpris
 %{_libdir}/%{name}/plugins/mtpdevice
+%{_libdir}/%{name}/plugins/plugins/listenbrainz/*
 %{_libdir}/%{name}/plugins/notification
 %{_libdir}/%{name}/plugins/power-manager
 %{_libdir}/%{name}/plugins/python-console
