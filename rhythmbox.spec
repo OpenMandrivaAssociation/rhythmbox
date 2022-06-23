@@ -10,18 +10,21 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.4
-Release:	2
+Version:	3.4.6
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:	appstream-util
+BuildRequires:	meson
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	vala
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(avahi-glib)
+BuildRequires:	pkgconfig(check)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
 BuildRequires:	pkgconfig(clutter-gst-2.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-gtk-1.0) >= 1.0
@@ -37,6 +40,7 @@ BuildRequires:	pkgconfig(gtk+-3.0) >= 3.2.0
 BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0)
+BuildRequires:	pkgconfig(libbrasero-media3)
 BuildRequires:	pkgconfig(libdmapsharing-3.0)
 BuildRequires:	pkgconfig(libgpod-1.0)
 BuildRequires:	pkgconfig(liblircclient0)
@@ -124,16 +128,12 @@ Install this if you want to build Rhythmbox plugins.
 %autosetup -p1
 
 %build
-%configure \
-	--disable-gtk-doc \
-	--with-libsecret \
-	--without-webkit \
-	--enable-vala
+%meson
 
-%make_build
+%meson_build
 
 %install
-%make_install _ENABLE_SK=false
+%meson_install
 %find_lang %{name} --with-gnome
 
 desktop-file-install --vendor="" \
@@ -165,14 +165,14 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %doc AUTHORS COPYING README NEWS
 %{_bindir}/rhythmbox
 %{_bindir}/rhythmbox-client
-%{_datadir}/applications/rhythmbox.desktop
-%{_datadir}/applications/rhythmbox-device.desktop
+%{_datadir}/applications/org.gnome.Rhythmbox3.device.desktop
+%{_datadir}/applications/org.gnome.Rhythmbox3.desktop
 %{_datadir}/dbus-1/services/org.gnome.Rhythmbox3.service
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
-%{_datadir}/metainfo/%{name}.appdata.xml
-%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox-symbolic.svg
-%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox.svg
+%{_datadir}/metainfo/org.gnome.Rhythmbox3.appdata.xml
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox3-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox3.svg
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
@@ -180,7 +180,8 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/artsearch
 %{_libdir}/%{name}/plugins/audiocd
 %{_libdir}/%{name}/plugins/audioscrobbler
-%{_libdir}/%{name}/plugins/context
+%{_libdir}/%{name}/plugins/cd-recorder
+#{_libdir}/%{name}/plugins/context
 %{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
@@ -191,7 +192,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/iradio
 %{_libdir}/%{name}/plugins/lyrics
 %{_libdir}/%{name}/plugins/magnatune
-%{_libdir}/%{name}/plugins/mmkeys
+#{_libdir}/%{name}/plugins/mmkeys
 %{_libdir}/%{name}/plugins/mpris
 %{_libdir}/%{name}/plugins/mtpdevice
 %{_libdir}/%{name}/plugins/listenbrainz/*
@@ -201,9 +202,9 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/rb
 %{_libdir}/%{name}/plugins/rblirc
 %{_libdir}/%{name}/plugins/replaygain
-%{_libdir}/%{name}/plugins/soundcloud
+#{_libdir}/%{name}/plugins/soundcloud
 %{_libdir}/%{name}/plugins/webremote
-%{_libdir}/%{name}/sample-plugins
+#{_libdir}/%{name}/sample-plugins
 %{_mandir}/man1/*.1*
 
 %files -n %{libname}
@@ -220,7 +221,8 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_includedir}/%{name}
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/%{name}.pc
-%{_datadir}/gtk-doc/html/%{name}
 %{_datadir}/gir-1.0/MPID-%{gimajor}.gir
 %{_datadir}/gir-1.0/RB-%{gimajor}.gir
+%{_datadir}/vala/vapi/rb.vapi
+%{_datadir}/vala/vapi/rhythmdb.vapi
 
