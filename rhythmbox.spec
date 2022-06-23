@@ -219,7 +219,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_includedir}/%{name}
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/%{name}.pc
-%{_datadir}/gtk-doc/html/%{name}
+#{_datadir}/gtk-doc/html/%{name}
 %{_datadir}/gir-1.0/MPID-%{gimajor}.gir
 %{_datadir}/gir-1.0/RB-%{gimajor}.gir
 
