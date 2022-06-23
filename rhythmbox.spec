@@ -10,13 +10,14 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.4
-Release:	2
+Version:	3.4.6
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:	meson
 BuildRequires:	intltool
 BuildRequires:	itstool
 BuildRequires:	vala
@@ -124,16 +125,12 @@ Install this if you want to build Rhythmbox plugins.
 %autosetup -p1
 
 %build
-%configure \
-	--disable-gtk-doc \
-	--with-libsecret \
-	--without-webkit \
-	--enable-vala
+%meson
 
-%make_build
+%meson_build
 
 %install
-%make_install _ENABLE_SK=false
+%meson_install
 %find_lang %{name} --with-gnome
 
 desktop-file-install --vendor="" \
