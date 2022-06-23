@@ -17,6 +17,7 @@ Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 
+BuildRequires:	appstream-util
 BuildRequires:	meson
 BuildRequires:	intltool
 BuildRequires:	itstool
@@ -169,9 +170,9 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_datadir}/dbus-1/services/org.gnome.Rhythmbox3.service
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
-#{_datadir}/metainfo/%{name}.appdata.xml
-#{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox-symbolic.svg
-#{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox.svg
+%{_datadir}/metainfo/org.gnome.Rhythmbox3.appdata.xml
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox3-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox3.svg
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
@@ -179,6 +180,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/artsearch
 %{_libdir}/%{name}/plugins/audiocd
 %{_libdir}/%{name}/plugins/audioscrobbler
+%{_libdir}/%{name}/plugins/cd-recorder
 #{_libdir}/%{name}/plugins/context
 %{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
@@ -219,7 +221,8 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_includedir}/%{name}
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/%{name}.pc
-#{_datadir}/gtk-doc/html/%{name}
 %{_datadir}/gir-1.0/MPID-%{gimajor}.gir
 %{_datadir}/gir-1.0/RB-%{gimajor}.gir
+%{_datadir}/vala/vapi/rb.vapi
+%{_datadir}/vala/vapi/rhythmdb.vapi
 
