@@ -23,6 +23,7 @@ BuildRequires:	itstool
 BuildRequires:	vala
 BuildRequires:	pkgconfig(python)
 BuildRequires:	pkgconfig(avahi-glib)
+BuildRequires:	pkgconfig(check)
 BuildRequires:	pkgconfig(clutter-1.0) >= 1.2
 BuildRequires:	pkgconfig(clutter-gst-2.0) >= 1.0
 BuildRequires:	pkgconfig(clutter-gtk-1.0) >= 1.0
