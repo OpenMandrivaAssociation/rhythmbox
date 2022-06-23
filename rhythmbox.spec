@@ -164,14 +164,14 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %doc AUTHORS COPYING README NEWS
 %{_bindir}/rhythmbox
 %{_bindir}/rhythmbox-client
-%{_datadir}/applications/rhythmbox.desktop
-%{_datadir}/applications/rhythmbox-device.desktop
+%{_datadir}/applications/org.gnome.Rhythmbox3.device.desktop
+%{_datadir}/applications/org.gnome.Rhythmbox3.desktop
 %{_datadir}/dbus-1/services/org.gnome.Rhythmbox3.service
 %{_datadir}/glib-2.0/schemas/*.xml
 %{_datadir}/rhythmbox/
-%{_datadir}/metainfo/%{name}.appdata.xml
-%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox-symbolic.svg
-%{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox.svg
+#{_datadir}/metainfo/%{name}.appdata.xml
+#{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox-symbolic.svg
+#{_iconsdir}/hicolor/scalable/apps/org.gnome.Rhythmbox.svg
 %{_libexecdir}/rhythmbox-metadata
 %dir %{_libdir}/%{name}/
 %dir %{_libdir}/%{name}/plugins
@@ -179,7 +179,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/artsearch
 %{_libdir}/%{name}/plugins/audiocd
 %{_libdir}/%{name}/plugins/audioscrobbler
-%{_libdir}/%{name}/plugins/context
+#{_libdir}/%{name}/plugins/context
 %{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
@@ -190,7 +190,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/iradio
 %{_libdir}/%{name}/plugins/lyrics
 %{_libdir}/%{name}/plugins/magnatune
-%{_libdir}/%{name}/plugins/mmkeys
+#{_libdir}/%{name}/plugins/mmkeys
 %{_libdir}/%{name}/plugins/mpris
 %{_libdir}/%{name}/plugins/mtpdevice
 %{_libdir}/%{name}/plugins/listenbrainz/*
@@ -200,9 +200,9 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/rb
 %{_libdir}/%{name}/plugins/rblirc
 %{_libdir}/%{name}/plugins/replaygain
-%{_libdir}/%{name}/plugins/soundcloud
+#{_libdir}/%{name}/plugins/soundcloud
 %{_libdir}/%{name}/plugins/webremote
-%{_libdir}/%{name}/sample-plugins
+#{_libdir}/%{name}/sample-plugins
 %{_mandir}/man1/*.1*
 
 %files -n %{libname}
