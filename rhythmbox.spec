@@ -10,8 +10,8 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.6
-Release:	5
+Version:	3.4.7
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		http://www.gnome.org/projects/rhythmbox/
@@ -50,8 +50,7 @@ BuildRequires:	pkgconfig(libnotify)
 BuildRequires:	pkgconfig(libpeas-1.0) >= 0.7.3
 BuildRequires:	pkgconfig(libpeas-gtk-1.0) >= 0.7.3
 BuildRequires:	pkgconfig(libsecret-1)
-BuildRequires:	pkgconfig(libsoup-2.4)
-BuildRequires:	pkgconfig(libsoup-gnome-2.4)
+BuildRequires:	pkgconfig(libsoup-3.0)
 BuildRequires:	pkgconfig(pygobject-3.0) >= 2.90.2
 BuildRequires:	pkgconfig(sm)
 BuildRequires:	pkgconfig(tdb)
