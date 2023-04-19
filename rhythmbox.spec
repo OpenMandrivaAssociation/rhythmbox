@@ -181,7 +181,7 @@ rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 %{_libdir}/%{name}/plugins/audioscrobbler
 %{_libdir}/%{name}/plugins/cd-recorder
 #{_libdir}/%{name}/plugins/context
-%{_libdir}/%{name}/plugins/daap
+#{_libdir}/%{name}/plugins/daap
 %{_libdir}/%{name}/plugins/dbus-media-server
 %{_libdir}/%{name}/plugins/fmradio
 %{_libdir}/%{name}/plugins/generic-player
