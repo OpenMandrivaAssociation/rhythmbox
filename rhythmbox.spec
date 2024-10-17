@@ -14,7 +14,7 @@ Version:	3.4.7
 Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
-Url:		http://www.gnome.org/projects/rhythmbox/
+Url:		https://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:	appstream-util
