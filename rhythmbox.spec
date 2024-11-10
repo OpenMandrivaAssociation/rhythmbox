@@ -161,7 +161,7 @@ done
 rm -rf %{buildroot}%{_libdir}/%{name}/plugins/rbzeitgeist
 
 %files -f %{name}.lang
-%doc AUTHORS COPYING README NEWS
+%doc AUTHORS COPYING NEWS
 %{_bindir}/rhythmbox
 %{_bindir}/rhythmbox-client
 %{_datadir}/applications/org.gnome.Rhythmbox3.device.desktop
