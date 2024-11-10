@@ -10,7 +10,7 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.7
+Version:	3.4.8
 Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
