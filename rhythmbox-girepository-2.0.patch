@@ -1,0 +1,113 @@
+diff --git a/meson.build b/meson.build
+index dd45724..430ddc5 100644
+--- a/meson.build
++++ b/meson.build
+@@ -51,7 +51,7 @@ gio = dependency('gio-2.0', version: '>=' + glib_required, required: true)
+ gio_unix = dependency('gio-unix-2.0', version: '>=' + glib_required, required: true)
+ glib = dependency('glib-2.0', version: '>=' + glib_required, required: true)
+ gobject = dependency('gobject-2.0', version: '>=' + glib_required, required: true)
+-gobject_introspection = dependency('gobject-introspection-1.0', version: '>= 0.10.0', required: true)
++gobject_introspection = dependency('girepository-2.0', version: '>= 2.84.0', required: true)
+ gstreamer = dependency('gstreamer-1.0', version: '>= ' + gstreamer_required, required: true)
+ gstreamer_audio = dependency('gstreamer-audio-1.0', version: '>= ' + gstreamer_required, required: true)
+ gstreamer_base = dependency('gstreamer-base-1.0', version: '>= ' + gstreamer_required, required: true)
+diff --git a/shell/rb-shell.c b/shell/rb-shell.c
+index 5519c4d..ce905e4 100644
+--- a/shell/rb-shell.c
++++ b/shell/rb-shell.c
+@@ -46,7 +46,7 @@
+ #include <glib/gi18n.h>
+ #include <gdk/gdk.h>
+ #include <gtk/gtk.h>
+-#include <girepository.h>
++#include <girepository/girepository.h>
+ 
+ #include <libpeas/peas.h>
+ #include <libpeas-gtk/peas-gtk.h>
+@@ -809,31 +809,31 @@ construct_plugins (RBShell *shell)
+ 	typelib_dir = g_build_filename (LIBDIR,
+ 					"girepository-1.0",
+ 					NULL);
+-	if (g_irepository_require_private (g_irepository_get_default (),
++	if (gi_repository_require_private (gi_repository_new (),
+ 					   typelib_dir, "MPID", "3.0", 0, &error) == FALSE) {
+ 		g_clear_error (&error);
+-		if (g_irepository_require (g_irepository_get_default (), "MPID", "3.0", 0, &error) == FALSE) {
++		if (g_irepository_require (gi_repository_new (), "MPID", "3.0", 0, &error) == FALSE) {
+ 			g_warning ("Could not load MPID typelib: %s", error->message);
+ 			g_clear_error (&error);
+ 		}
+ 	}
+ 
+-	if (g_irepository_require_private (g_irepository_get_default (),
++	if (gi_repository_require_private (gi_repository_new (),
+ 					   typelib_dir, "RB", "3.0", 0, &error) == FALSE) {
+ 		g_clear_error (&error);
+-		if (g_irepository_require (g_irepository_get_default (), "RB", "3.0", 0, &error) == FALSE) {
++		if (g_irepository_require (gi_repository_new (), "RB", "3.0", 0, &error) == FALSE) {
+ 			g_warning ("Could not load RB typelib: %s", error->message);
+ 			g_clear_error (&error);
+ 		}
+ 	}
+ 	g_free (typelib_dir);
+ 
+-	if (g_irepository_require (g_irepository_get_default (), "Peas", "1.0", 0, &error) == FALSE) {
++	if (g_irepository_require (gi_repository_new (), "Peas", "1.0", 0, &error) == FALSE) {
+ 		g_warning ("Could not load Peas typelib: %s", error->message);
+ 		g_clear_error (&error);
+ 	}
+ 
+-	if (g_irepository_require (g_irepository_get_default (), "PeasGtk", "1.0", 0, &error) == FALSE) {
++	if (g_irepository_require (gi_repository_new (), "PeasGtk", "1.0", 0, &error) == FALSE) {
+ 		g_warning ("Could not load PeasGtk typelib: %s", error->message);
+ 		g_clear_error (&error);
+ 	}
+diff --git a/shell/rb-shell.c b/shell/rb-shell.c
+index ce905e4..e3c814a 100644
+--- a/shell/rb-shell.c
++++ b/shell/rb-shell.c
+@@ -812,7 +812,7 @@ construct_plugins (RBShell *shell)
+ 	if (gi_repository_require_private (gi_repository_new (),
+ 					   typelib_dir, "MPID", "3.0", 0, &error) == FALSE) {
+ 		g_clear_error (&error);
+-		if (g_irepository_require (gi_repository_new (), "MPID", "3.0", 0, &error) == FALSE) {
++		if (gi_repository_require (gi_repository_new (), "MPID", "3.0", 0, &error) == FALSE) {
+ 			g_warning ("Could not load MPID typelib: %s", error->message);
+ 			g_clear_error (&error);
+ 		}
+@@ -821,19 +821,19 @@ construct_plugins (RBShell *shell)
+ 	if (gi_repository_require_private (gi_repository_new (),
+ 					   typelib_dir, "RB", "3.0", 0, &error) == FALSE) {
+ 		g_clear_error (&error);
+-		if (g_irepository_require (gi_repository_new (), "RB", "3.0", 0, &error) == FALSE) {
++		if (gi_repository_require (gi_repository_new (), "RB", "3.0", 0, &error) == FALSE) {
+ 			g_warning ("Could not load RB typelib: %s", error->message);
+ 			g_clear_error (&error);
+ 		}
+ 	}
+ 	g_free (typelib_dir);
+ 
+-	if (g_irepository_require (gi_repository_new (), "Peas", "1.0", 0, &error) == FALSE) {
++	if (gi_repository_require (gi_repository_new (), "Peas", "1.0", 0, &error) == FALSE) {
+ 		g_warning ("Could not load Peas typelib: %s", error->message);
+ 		g_clear_error (&error);
+ 	}
+ 
+-	if (g_irepository_require (gi_repository_new (), "PeasGtk", "1.0", 0, &error) == FALSE) {
++	if (gi_repository_require (gi_repository_new (), "PeasGtk", "1.0", 0, &error) == FALSE) {
+ 		g_warning ("Could not load PeasGtk typelib: %s", error->message);
+ 		g_clear_error (&error);
+ 	}
+diff --git a/shell/main.c b/shell/main.c
+index aeec072..2a72b26 100644
+--- a/shell/main.c
++++ b/shell/main.c
+@@ -39,7 +39,7 @@
+ #include <X11/Xlib.h>
+ #endif
+ 
+-#include <girepository.h>
++#include <girepository/girepository.h>
+ 
+ #include "rb-shell.h"
+ #include "rb-util.h"
