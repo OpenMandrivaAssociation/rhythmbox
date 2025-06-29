@@ -11,7 +11,7 @@
 Summary:	Music Management Application 
 Name:		rhythmbox
 Version:	3.4.8
-Release:	1
+Release:	2
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		https://www.gnome.org/projects/rhythmbox/
