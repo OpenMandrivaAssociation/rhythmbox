@@ -11,11 +11,13 @@
 Summary:	Music Management Application 
 Name:		rhythmbox
 Version:	3.4.8
-Release:	1
+Release:	3
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		https://www.gnome.org/projects/rhythmbox/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
+Patch0:          rhythmbox-gi-require-version.patch
+Patch1:          rhythmbox-girepository-2.0.patch
 
 BuildRequires:	appstream-util
 BuildRequires:	meson
