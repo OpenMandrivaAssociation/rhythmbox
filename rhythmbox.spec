@@ -10,12 +10,12 @@
 
 Summary:	Music Management Application 
 Name:		rhythmbox
-Version:	3.4.8
-Release:	2
+Version:	3.4.9
+Release:	1
 License:	GPLv2+ with exception
 Group:		Sound
 Url:		https://www.gnome.org/projects/rhythmbox/
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
+Source0:	https://ftp.gnome.org/pub/GNOME/sources/rhythmbox/%{url_ver}/%{name}-%{version}.tar.xz
 
 BuildRequires:	appstream-util
 BuildRequires:	meson
@@ -41,7 +41,7 @@ BuildRequires:	pkgconfig(gudev-1.0)
 BuildRequires:	pkgconfig(ice)
 BuildRequires:	pkgconfig(json-glib-1.0)
 BuildRequires:	pkgconfig(libbrasero-media3)
-BuildRequires:	pkgconfig(libdmapsharing-3.0)
+BuildRequires:	pkgconfig(libdmapsharing-4.0)
 BuildRequires:	pkgconfig(libgpod-1.0)
 BuildRequires:	pkgconfig(liblircclient0)
 BuildRequires:	pkgconfig(libmtp)
